@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE TDDML SYSTEM "../../../TDDML.dtd">
+<TDDML>
+  <!-- YCARRELLO_PORTALE (YCARREL) -->
+  <!-- <AlterTable schema="THIPPERS" name="YCARRELLO_PORTALE"> -->
+    <!-- <AddConstraint> -->
+      <!-- <Constraint name="UtentePortale_4295" refschema="THIPPERS" reftable="YUSER_PORTAL" schema="THIPPERS" ondelete="Restrict"> -->
+        <!-- <ColumnRef name="R_UTENTE_PORTALE"/> -->
+      <!-- </Constraint> -->
+      <!-- <Constraint name="Articolo_162400838" refschema="THIP" reftable="ARTICOLI" schema="THIPPERS" ondelete="Restrict"> -->
+        <!-- <ColumnRef name="ID_AZIENDA"/> -->
+        <!-- <ColumnRef name="R_ARTICOLO"/> -->
+      <!-- </Constraint> -->
+      <!-- <Constraint name="Cliente_1646193576" refschema="THIP" reftable="CLIENTI_VEN" schema="THIPPERS" ondelete="Restrict"> -->
+        <!-- <ColumnRef name="ID_AZIENDA"/> -->
+        <!-- <ColumnRef name="R_CLIENTE"/> -->
+      <!-- </Constraint> -->
+      <!-- <Constraint name="Azienda_859025591" refschema="THIP" reftable="AZIENDE_ESTESE" schema="THIPPERS" ondelete="Restrict"> -->
+        <!-- <ColumnRef name="ID_AZIENDA"/> -->
+      <!-- </Constraint> -->
+    <!-- </AddConstraint> -->
+  <!-- </AlterTable> -->
+</TDDML>

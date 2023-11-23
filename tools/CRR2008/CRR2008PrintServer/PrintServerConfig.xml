@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="windows-1250"?>
+<!-- Print Server Configuration -->
+<PrintServerConfiguration xsi:noNamespaceSchemaLocation="PrintServerConfig.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">  
+    <ServerConfiguration>        
+        <Port>10131</Port>
+        <RptRoot>W:/PthDev/Projects/Panthera/Valvorobica/4.7/rpt/cr2008</RptRoot>
+        <LogPath>W:/PthDev/works/CRR2008/Valvorobica</LogPath>
+        <LogLevel>0</LogLevel>
+        <MaxLogFolders>10</MaxLogFolders>
+    </ServerConfiguration>
+    <ClientServerMapping>      
+        <CSMap>
+            <ClientIp>127.0.0.1</ClientIp>
+            <ClientDBAlias>Valvorobica</ClientDBAlias>            
+            <ServerDBAlias>Valvorobica</ServerDBAlias>
+            <ServerRptRelativePath></ServerRptRelativePath>
+        </CSMap>                
+    </ClientServerMapping>   
+</PrintServerConfiguration>
