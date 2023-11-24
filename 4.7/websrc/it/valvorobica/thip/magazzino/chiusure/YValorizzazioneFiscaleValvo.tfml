@@ -1,0 +1,29 @@
+<tfml>
+
+<generator type="batchForm" />
+
+<form classHdr="YValorizzazioneFiscaleVal" errorList="yes" inputFont="Arial,10" name="myForm" 
+	  submitReset="none" toolbar="yes" menubar="yes"
+	  webFormModifierClass="it.valvorobica.thip.magazzino.chiusure.web.YValorizzazioneFiscaleValvoFormModifier"
+	  header="it.thera.thip.cs.Header.jsp" 
+	  footer="it.thera.thip.cs.Footer.jsp" >
+
+<menubar  name="myMenuBar" width="60" color="#000000" background="#A5B6CE">
+  <import file="com/thera/thermfw/batch/PrintRunnableMenu.tfml"/>
+</menubar>
+
+<toolbar name="myToolBar" width="24" height="24" imgwidth="16" imgheight="16" color="#f7fbfd" background="#C8D6E1">
+  <import file="com/thera/thermfw/batch/PrintRunnableMenu.tfml"/>
+</toolbar>
+
+<textinput classAD="IdAzienda"	name="IdAzienda"/>
+<textinput classAD="ReportId"	name="thReportId"/>
+<multisearchform name="AnnoFsc" classRD="AnnoFiscale" fixedRestrictConditions="StatoAnnoFiscale,A"/>
+<textinput classAD="PrcIncrementoMatProd" name="PrcIncrementoMatProd"/>
+<checkbox classAD="CalcoloCmp" name="CalcoloCmp"/>
+<checkbox classAD="StampaCMP" name="StampaCMP"/>
+<multisearchform name="TipoCosto" classRD="TipoCosto"/>
+<textinput classAD="DataUltimaChiusura" name="DataUltimaChiusura"/>
+<combobox classAD="StatoChiusuraMag" name="StatoChiusuraMag"/>
+</form>
+</tfml>

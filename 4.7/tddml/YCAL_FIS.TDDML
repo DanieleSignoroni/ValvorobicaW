@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE TDDML SYSTEM "../../../TDDML.dtd">
+<TDDML>
+  <AlterTable schema="THIPPERS" name="YCALEN_FISCALE">
+    <AddColumn>
+      <Column name="DATA_ULTIMA_CHIUSURA" shortname="DATA_ULT_C" type="date" nullable="yes"/>
+	  <Column name="ESITO_ULTIMA_CHIUSURA" shortname="ESITO" type="char" length="1" default="N" nullable="no"/>
+    </AddColumn>
+  </AlterTable>
+  <Comment>
+    <CommentTable schema="THIPPERS" name="YCALEN_FISCALE" text="Documento vendita pers">
+      <CommentColumn name="DATA_ULTIMA_CHIUSURA" text="Data ultima chiusura"/>
+	   <CommentColumn name="ESITO_ULTIMA_CHIUSURA" text="Esito ultima chiusura"/>
+    </CommentTable>
+  </Comment>
+</TDDML>

@@ -1,0 +1,149 @@
+<html>
+
+<head>
+</head>
+
+<body leftmargin="0" rightmargin="0" topmargin="0" bottommargin="0">
+
+
+
+	<form name="form">
+
+		<table height="100%" width="100%" cellspacing="0" cellpadding="2"
+			id="emptyborder">
+			<tr>
+				<td style="height: 0"><span class="menubar" id="myMenuBar" />
+				</td>
+			</tr>
+			<tr>
+				<td style="height: 0"><span class="toolbar" id="myToolBar" />
+				</td>
+			</tr>
+			<tr>
+				<td><span class="tabbed" id="myTabbed"> <span
+						class="tab" id="tabAnnoFiscale">
+							<table cellpadding="2" cellspacing="2" width="60%">
+								<tr>
+									<td colspan="2"><input style="display: none" type="text"
+										name="CodiceAzienda" id="CodiceAzienda" /></td>
+								</tr>
+								<tr>
+									<td width="35%"><label for="CodiceAnnoFiscale">Codice</label></td>
+									<td width="64%"><input type="text"
+										name="CodiceAnnoFiscale" id="CodiceAnnoFiscale" /></td>
+								</tr>
+								<span class="subform" name="Descrizione" id="Descrizione" />
+							</table>
+
+							<table cellpadding="2" cellspacing="2" width="60%">
+								<tr>
+									<td>
+										<fieldset name="validita">
+											<legend align="top">
+												<label id="Validita" name="Validita"></label>
+											</legend>
+											<table width="100%">
+												<tr>
+													<td width="35%"><label for="DataInizio">DataInizio</label>
+													</td>
+													<td width="35%"><input type="text" name="DataInizio"
+														id="DataInizio" /></td>
+													<td width="30" rowspan="2">
+														<button name="GeneraPeriodi" id="GeneraPeriodi"
+															type="button">Genera periodi</button>
+													</td>
+												</tr>
+												<tr>
+													<td><label for="DataFine">DataFine</label></td>
+													<td><input type="text" name="DataFine" id="DataFine" />
+													</td>
+												</tr>
+											</table>
+										</fieldset>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<fieldset name="x">
+											<table width="100%">
+												<tr>
+													<td width="35%"><label for="EsecAttivAnnoFiscale">EsecAttivAnnoFiscale</label>
+													</td>
+													<td width="65%"><select name="EsecAttivAnnoFiscale"
+														id="EsecAttivAnnoFiscale" style="width: 100%">
+															<option></option>
+													</select></td>
+												</tr>
+												<tr>
+													<td><label for="StatoAnnoFiscale">StatoAnnoFiscale</label></td>
+													<td><select name="StatoAnnoFiscale"
+														id="StatoAnnoFiscale" style="width: 100%">
+															<option></option>
+													</select></td>
+												</tr>
+												<tr>
+													<td><label for="NumMesiCostoMedioLIFO">NumMesiCostoMedioLIFO</label>
+													</td>
+													<td><input type="text" size="3"
+														name="NumMesiCostoMedioLIFO" id="NumMesiCostoMedioLIFO" />
+													</td>
+												</tr>
+												<span class="subform" name="DatiComuniEstesi"
+													id="DatiComuniEstesi" />
+											</table>
+										</fieldset>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<fieldset name="x">
+											<table width="100%">
+												<tr>
+													<td><label for="DataUltimaChiusura"></label></td>
+													<td><input type="text" name="DataUltimaChiusura" id="DataUltimaChiusura" />
+													</td>
+												</tr>
+												<tr>
+													<td><label for="StatoChiusuraMag"></label></td>
+													<td><select name="StatoChiusuraMag"
+														id="StatoChiusuraMag" style="width: 100%">
+															<option></option>
+													</select></td>
+												</tr>
+											</table>
+										</fieldset>
+									</td>
+								</tr>
+							</table>
+					</span> <span class="tab" id="tabNLS">
+							<table width="100%">
+								<tr>
+									<td valign="top" width="100%"><span class="subform"
+										name="DescrizioneNLS" id="DescrizioneNLS" /></td>
+								</tr>
+							</table>
+					</span> <span class="tab" id="tabPeriodi">
+							<table width="100%">
+								<tr>
+									<td width="50%" valign="top"><span class="editgrid"
+										name="Periodi" id="Periodi"></span></td>
+									<td width="50%" valign="top">
+										<fieldset id="y">
+											<span class="rowform" name="formPeriodi" id="formPeriodi"></span>
+										</fieldset>
+									</td>
+								</tr>
+							</table>
+					</span>
+				</span></td>
+			</tr>
+			<tr>
+				<td style="height: 0"><span class="errorlist" /></td>
+			</tr>
+		</table>
+
+	</form>
+
+</body>
+</html>
+
