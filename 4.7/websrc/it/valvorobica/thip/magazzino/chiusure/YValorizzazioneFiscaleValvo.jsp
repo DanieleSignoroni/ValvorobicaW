@@ -232,6 +232,22 @@
 </td>
 						</tr>
 						<tr>
+							<td><%{  WebLabelCompound label = new com.thera.thermfw.web.WebLabelCompound(null, null, "YValorizzazioneFiscaleVal", "AzzeraCostiManuali", null); 
+   label.setParent(YValorizzazioneFiscaleValForm); 
+%><label class="<%=label.getClassType()%>" for="AzzeraCostiManuali"><%label.write(out);%></label><%}%></td>
+							<td><% 
+  WebComboBox YValorizzazioneFiscaleValAzzeraCostiManuali =  
+     new com.thera.thermfw.web.WebComboBox("YValorizzazioneFiscaleVal", "AzzeraCostiManuali", null); 
+  YValorizzazioneFiscaleValAzzeraCostiManuali.setParent(YValorizzazioneFiscaleValForm); 
+%>
+<select id="<%=YValorizzazioneFiscaleValAzzeraCostiManuali.getId()%>" name="<%=YValorizzazioneFiscaleValAzzeraCostiManuali.getName()%>"><% 
+  YValorizzazioneFiscaleValAzzeraCostiManuali.write(out); 
+%> 
+
+									
+							</select></td>
+						</tr>
+						<tr>
 							<td><%{  WebLabelCompound label = new com.thera.thermfw.web.WebLabelCompound(null, null, "YValorizzazioneFiscaleVal", "IdCosto", null); 
    label.setParent(YValorizzazioneFiscaleValForm); 
 %><label class="<%=label.getClassType()%>" for="TipoCosto"><%label.write(out);%></label><%}%></td>

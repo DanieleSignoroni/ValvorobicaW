@@ -18,6 +18,7 @@ import com.thera.thermfw.batch.ElaboratePrintRunnable;
 import com.thera.thermfw.batch.PrintingToolInterface;
 import com.thera.thermfw.batch.ReportModel;
 import com.thera.thermfw.common.BusinessObject;
+import com.thera.thermfw.common.ErrorMessage;
 import com.thera.thermfw.persist.CachedStatement;
 import com.thera.thermfw.persist.Column;
 import com.thera.thermfw.persist.ConnectionManager;
@@ -35,13 +36,16 @@ import it.thera.thip.base.articolo.ArticoloCosto;
 import it.thera.thip.base.articolo.ArticoloCostoTM;
 import it.thera.thip.base.articolo.TipoCosto;
 import it.thera.thip.base.azienda.Azienda;
+import it.thera.thip.cs.ThipException;
 import it.thera.thip.magazzino.chiusure.CalendarioFiscale;
+import it.thera.thip.magazzino.chiusure.PeriodoCalFiscale;
 import it.thera.thip.magazzino.chiusure.PeriodoCalFiscaleTM;
 import it.thera.thip.magazzino.chiusure.RptStoricoCmpArticolo;
 import it.thera.thip.magazzino.chiusure.RptStoricoCmpArticoloTM;
 import it.thera.thip.produzione.ordese.AttivitaEsecMateriale;
 import it.thera.thip.produzione.ordese.AttivitaEsecutiva;
 import it.thera.thip.produzione.ordese.OrdineEsecutivo;
+import it.thera.thip.vendite.proposteEvasione.CreaMessaggioErrore;
 
 /**
  * <h1>Softre Solutions</h1> <br>
@@ -67,6 +71,8 @@ import it.thera.thip.produzione.ordese.OrdineEsecutivo;
 
 public class YValorizzazioneFiscaleValvo extends ElaboratePrintRunnable implements BusinessObject {
 
+	SimpleDateFormat dateFormatSQL = new SimpleDateFormat("yyyyMMdd");
+
 	protected String iIdAzienda = null;
 
 	protected String iIdAnnoFiscale = null;
@@ -84,6 +90,8 @@ public class YValorizzazioneFiscaleValvo extends ElaboratePrintRunnable implemen
 	protected boolean iCalcoloCmp;
 
 	protected boolean iStampaCMP;
+
+	protected char iAzzeraCostiManuali;
 
 	protected Proxy iTipoCosto = new Proxy(TipoCosto.class);
 
@@ -253,6 +261,14 @@ public class YValorizzazioneFiscaleValvo extends ElaboratePrintRunnable implemen
 		this.iStatoChiusuraMag = iStatoChiusuraMag;
 	}
 
+	public char getAzzeraCostiManuali() {
+		return iAzzeraCostiManuali;
+	}
+
+	public void setAzzeraCostiManuali(char iAzzeraCostiManuali) {
+		this.iAzzeraCostiManuali = iAzzeraCostiManuali;
+	}
+
 	@Override
 	public boolean createReport() {
 		boolean ok = true;
@@ -260,7 +276,14 @@ public class YValorizzazioneFiscaleValvo extends ElaboratePrintRunnable implemen
 		writeLog("Data ultima chiusura trovata: " + getDataUltimaChiusura());
 		try {
 			if (isCalcoloCMP()) {
+				storicizzaUltimoLancio();
+				cancellaStoricoSePeriodoMinore();
 				creaStoricoZero();
+				if (getAzzeraCostiManuali() == YAzzeraCostiManualiCMP.SI) {
+					// azzero costi manuali di tutti i record ystoricocmpart con anno == quello
+					// nella form di lancio
+					azzeraCostiManualiAnno(this.getIdAnnoFiscale());
+				}
 				storicizzazioneCostoMedioAnno(true, null);
 				aggiornaCostoMovimenti();
 				storicizzaCostoArticolo();
@@ -290,6 +313,143 @@ public class YValorizzazioneFiscaleValvo extends ElaboratePrintRunnable implemen
 			ok = false;
 		}
 		return ok;
+	}
+
+	protected void cancellaStoricoSePeriodoMinore() {
+		boolean cancellare = false;
+		PeriodoCalFiscale periodoUltimaChiusura = getPeriodoCalFiscaleUltimaChiusura();
+		PeriodoCalFiscale periodoUltimoLancio = getPeriodoCalFiscaleUltimoLancio();
+		if (periodoUltimaChiusura != null && periodoUltimoLancio != null) {
+			int annoUltimaChiusura = Integer.valueOf(periodoUltimaChiusura.getCodiceAnnoFiscale().trim());
+			int annoUltimaLancio = Integer.valueOf(periodoUltimoLancio.getCodiceAnnoFiscale().trim());
+			if (annoUltimaChiusura < annoUltimaLancio) {
+				cancellare = true;
+			} else if (periodoUltimaChiusura.getCodicePeriodo() < periodoUltimoLancio.getCodicePeriodo()) {
+				cancellare = true;
+			}
+//			} else if (periodoUltimaChiusura.getDataFine().compareTo(periodoUltimoLancio.getDataFine()) < 0) {
+//				cancellare = true;
+//			}
+		}
+		if (cancellare) {
+			String q = " DELETE " + YStoricoCmpArticoloTM.TABLE_NAME + " WHERE " + YStoricoCmpArticoloTM.ID_AZIENDA
+					+ " = '" + Azienda.getAziendaCorrente() + "'" + " AND " + YStoricoCmpArticoloTM.ID_ANNO_FISCALE
+					+ " = '" + this.getIdAnnoFiscale() + "'  ";
+			CachedStatement cs = null;
+			cs = new CachedStatement(q);
+			try {
+				int ok = cs.executeUpdate();
+				if (ok > 0) {
+					ConnectionManager.commit();
+				} else {
+					ConnectionManager.rollback();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					if (cs != null) {
+						cs.free();
+					}
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+
+	protected PeriodoCalFiscale getPeriodoCalFiscaleUltimoLancio() {
+		ResultSet rs = null;
+		CachedStatement cs = null;
+		try {
+			String query = "SELECT Y.ID_AZIENDA ,Y.ID_ANNO_FISCALE ,Y.ID_PER_ANNO_FSC FROM THIPPERS.YSTORICO_CMP_LANCIO Y"
+					+ "					 INNER JOIN THIP.PER_CALEN_FSC P   ON Y.ID_AZIENDA = P.ID_AZIENDA "
+					+ "					 AND Y.ID_ANNO_FISCALE = P.ID_ANNO_FISCALE "
+					+ "					 AND Y.ID_PER_ANNO_FSC = P.ID_PER_ANNO_FSC    ORDER BY P.DATA_FINE_PER DESC";
+			cs = new CachedStatement(query);
+			rs = cs.executeQuery();
+			if (rs.next()) {
+				return (PeriodoCalFiscale) PeriodoCalFiscale.elementWithKey(PeriodoCalFiscale.class,
+						KeyHelper.buildObjectKey(new String[] { rs.getString(YStoricoCmpLancioTM.ID_AZIENDA),
+								rs.getString(YStoricoCmpLancioTM.ID_ANNO_FISCALE),
+								rs.getString(YStoricoCmpLancioTM.ID_PER_ANNO_FSC) }),
+						PersistentObject.NO_LOCK);
+			}
+		} catch (SQLException e) {
+			writeLog(e.getMessage());
+			e.printStackTrace(Trace.excStream);
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Setta {@link YStoricoCmpArticoloTM#COSTO_MED_POND_MANUALE} == 0. In base
+	 * all'anno passato e l'azienda corrente.
+	 * 
+	 * @param idAnnoFiscale
+	 */
+	protected static void azzeraCostiManualiAnno(String idAnnoFiscale) {
+		String q = " UPDATE " + YStoricoCmpArticoloTM.TABLE_NAME + " SET "
+				+ YStoricoCmpArticoloTM.COSTO_MED_POND_MANUALE + " = 0 " + " WHERE " + YStoricoCmpArticoloTM.ID_AZIENDA
+				+ " = '" + Azienda.getAziendaCorrente() + "'" + " AND " + YStoricoCmpArticoloTM.ID_ANNO_FISCALE + " = '"
+				+ idAnnoFiscale + "'  ";
+		CachedStatement cs = null;
+		cs = new CachedStatement(q);
+		try {
+			int ok = cs.executeUpdate();
+			if (ok > 0) {
+				ConnectionManager.commit();
+			} else {
+				ConnectionManager.rollback();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (cs != null) {
+					cs.free();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	/**
+	 * Storicizzazione ultimo lancio in tabella personalizzata.<br>
+	 * Servira' dopo.
+	 * 
+	 * @throws ThipException
+	 */
+	protected void storicizzaUltimoLancio() throws ThipException {
+		PeriodoCalFiscale periodo = getPeriodoCalFiscaleUltimaChiusura();
+		if (periodo != null) {
+			YStoricoCmpLancio lancio = (YStoricoCmpLancio) Factory.createObject(YStoricoCmpLancio.class);
+			lancio.setPeriodocalfiscale(periodo);
+			try {
+				int rc = lancio.save();
+				if (rc >= 0) {
+					ConnectionManager.commit();
+				} else {
+					ConnectionManager.rollback();
+					ErrorMessage em = CreaMessaggioErrore.daRcAErrorMessage(rc, null);
+					throw new ThipException("** Impossibile salvare storico ultimo lancio, controllare ** --> " + em);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} else {
+			throw new ThipException("Non e' stato trovato nessun periodo fiscale");
+		}
+
 	}
 
 	protected void storicizzaCostoArticolo() throws SQLException {
@@ -705,6 +865,9 @@ public class YValorizzazioneFiscaleValvo extends ElaboratePrintRunnable implemen
 					+ " WHERE C." + ArticoloCostoTM.ID_AZIENDA + " = '" + Azienda.getAziendaCorrente() + "' AND C."
 					+ ArticoloCostoTM.ID_ARTICOLO + " = '" + idArticolo + "' " + " AND C."
 					+ ArticoloCostoTM.R_TIPO_COSTO + " = '" + this.getIdCosto() + "' ";
+			query += " AND " + ArticoloCostoTM.DATA_COSTO + " = '" + dateFormatSQL.format(getDataUltimaChiusura())
+					+ "' "; // Aggiunto controllo su data chiusura in modo da inserire piu costi per diversi
+							// periodi e cancellare solo quelli del periodo corrente, ricreandoli
 			cs = new CachedStatement(query);
 			rs = cs.executeQuery();
 			if (rs.next()) {
@@ -792,6 +955,38 @@ public class YValorizzazioneFiscaleValvo extends ElaboratePrintRunnable implemen
 			ex.printStackTrace(Trace.excStream);
 		}
 		return lista;
+	}
+
+	protected PeriodoCalFiscale getPeriodoCalFiscaleUltimaChiusura() {
+		ResultSet rs = null;
+		CachedStatement cs = null;
+		try {
+			String query = "SELECT p." + PeriodoCalFiscaleTM.ID_AZIENDA + ",p." + PeriodoCalFiscaleTM.ID_ANNO_FISCALE
+					+ ",p." + PeriodoCalFiscaleTM.ID_PER_ANNO_FSC + " " + "FROM THIP.PER_CALEN_FSC p "
+					+ "WHERE ID_AZIENDA = '" + Azienda.getAziendaCorrente() + "'  "
+					+ "AND STATO_CHIUS_MAG IN ('D','P') " + "ORDER BY p.DATA_FINE_PER DESC";
+			cs = new CachedStatement(query);
+			rs = cs.executeQuery();
+			if (rs.next()) {
+				return (PeriodoCalFiscale) PeriodoCalFiscale.elementWithKey(PeriodoCalFiscale.class,
+						KeyHelper.buildObjectKey(new String[] { rs.getString(PeriodoCalFiscaleTM.ID_AZIENDA),
+								rs.getString(PeriodoCalFiscaleTM.ID_ANNO_FISCALE),
+								rs.getString(PeriodoCalFiscaleTM.ID_PER_ANNO_FSC) }),
+						PersistentObject.NO_LOCK);
+			}
+		} catch (SQLException e) {
+			writeLog(e.getMessage());
+			e.printStackTrace(Trace.excStream);
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return null;
 	}
 
 	protected Date recuperaDataUltimaChiusuraMagazzinoDef() {
@@ -901,8 +1096,14 @@ public class YValorizzazioneFiscaleValvo extends ElaboratePrintRunnable implemen
 
 			storicoValvo.setGiacenzaFinale(giacenzaFinale);
 			storicoValvo.setIdUnitaMisura(oggettoLetto.R_UNITA_MISURA); // aggiunto dssof3
-			if (costoMedioPond.equals(BigDecimal.ZERO))
+			if (costoMedioPond.equals(BigDecimal.ZERO)) {
 				costoMedioPond = storicoPrecedente.getCostoMedioPonderato();
+			} else { // se il costo medio e' stato calcolato e ha valore e l'utente azzera costi
+						// calcolati tolgo il manuale
+				if (getAzzeraCostiManuali() == YAzzeraCostiManualiCMP.COSTI_CALCOLATI) {
+					storicoValvo.setCostoMedioPonderatoMan(BigDecimal.ZERO);
+				}
+			}
 			storicoValvo.setCostoMedioPonderato(costoMedioPond);
 			storicoValvo.setValoreFinale(valoreFinale);
 			if (storicoValvo.save() < 0)
@@ -975,6 +1176,51 @@ public class YValorizzazioneFiscaleValvo extends ElaboratePrintRunnable implemen
 				+ "		LEFT OUTER JOIN \r\n"
 				+ "			THIP.CLASSI_FISCALI cf ON cf.ID_AZIENDA = art.ID_AZIENDA AND cf.ID_CLASSE_FISCALE = art.R_CLASSE_FISCALE\r\n "
 				+ "    WHERE\r\n" + "        R_AZIENDA = '" + Azienda.getAziendaCorrente() + "'\r\n"
+				+ "     AND mag.RILEV_FISCALE = 'Y'    AND DTA_REGISTRAZIONE <= '" + this.getDataUltimaChiusuraString()
+				+ "'\r\n  AND YEAR(DTA_REGISTRAZIONE) = '" + this.getIdAnnoFiscale() + "'\r\n"
+				+ " 		AND (cf.ESCLUS_STP_FSC IS NULL OR cf.ESCLUS_STP_FSC <> 'Y')\r\n " + whereArticolo
+				+ "    GROUP BY\r\n" + "        R_AZIENDA,\r\n" + "        YEAR(DTA_REGISTRAZIONE),\r\n"
+				+ "        mag.R_RAG_FSC_MAG,\r\n" + "        R_ARTICOLO,\r\n"
+				+ "        R_CONFIG,mm.R_UNITA_MISURA\r\n" + "	ORDER BY R_ARTICOLO ";
+		statement = "SELECT\r\n" + "	R_AZIENDA,\r\n" + "	YEAR(DTA_REGISTRAZIONE) AS R_ANNO_FISCALE,\r\n"
+				+ "	mag.R_RAG_FSC_MAG,\r\n" + "	R_ARTICOLO,\r\n" + "	R_CONFIG,\r\n" + "	mm.R_UNITA_MISURA,\r\n"
+				+ "	SUM(CASE WHEN (caufis.AZIONE_COS_MED = 'Y' " + like + " AND mm.QTA_GIAC IN ('U', 'E') )\r\n"
+				+ "			THEN (\r\n" + "				CASE caufis.AZIONE_MAGAZ WHEN 'E' THEN QTA_MOVIMENTO\r\n"
+				+ "				WHEN 'U' THEN QTA_MOVIMENTO * -1 \r\n" + "				ELSE 0 END\r\n"
+				+ "			)\r\n" + "			WHEN (caufis.AZIONE_COS_MED = 'Y' " + like
+				+ " AND mm.QTA_GIAC IN ('-') )\r\n" + "			THEN QTA_MOVIMENTO\r\n" + "		ELSE 0 END\r\n"
+				+ "		) AS CARICHI,\r\n" + "	SUM(CASE WHEN (caufis.AZIONE_COS_MED = 'N' " + notLike
+				+ " AND mm.QTA_GIAC IN ('U', 'E') )\r\n" + "			THEN (\r\n"
+				+ "				CASE caufis.AZIONE_MAGAZ WHEN 'E' THEN QTA_MOVIMENTO * -1\r\n"
+				+ "				WHEN 'U' THEN QTA_MOVIMENTO \r\n" + "				ELSE 0 END\r\n" + "			)\r\n"
+				+ "    		WHEN (caufis.AZIONE_COS_MED = 'Y' " + notLike + " AND mm.QTA_GIAC IN ('-') )\r\n"
+				+ "			THEN QTA_MOVIMENTO\r\n" + "		ELSE 0 END\r\n" + "    	) AS SCARICHI,\r\n"
+				+ "	SUM(CASE WHEN (caufis.AZIONE_COS_MED = 'Y' " + like + " AND mm.QTA_GIAC IN ('U', 'E') )\r\n"
+				+ "			THEN (\r\n"
+				+ "				CASE caufis.AZIONE_MAGAZ WHEN 'E' THEN (QTA_MOVIMENTO * mm.COS_PRZ_EFF_PRM)\r\n"
+				+ "				WHEN 'U' THEN (QTA_MOVIMENTO * mm.COS_PRZ_EFF_PRM) * -1 \r\n"
+				+ "				ELSE 0 END\r\n" + "			)\r\n" + "			WHEN (caufis.AZIONE_COS_MED = 'Y' "
+				+ like + " AND mm.QTA_GIAC IN ('-') )\r\n" + "			THEN (QTA_MOVIMENTO * mm.COS_PRZ_EFF_PRM)\r\n"
+				+ "		ELSE 0 END\r\n" + "		) AS VAL_CARICHI,\r\n" + "	SUM(CASE WHEN (caufis.AZIONE_COS_MED = 'N' "
+				+ notLike + " AND mm.QTA_GIAC IN ('U', 'E') )\r\n" + "			THEN (\r\n"
+				+ "				CASE caufis.AZIONE_MAGAZ WHEN 'E' THEN (QTA_MOVIMENTO * mm.COS_PRZ_EFF_PRM) * -1\r\n"
+				+ "				WHEN 'U' THEN (QTA_MOVIMENTO * mm.COS_PRZ_EFF_PRM)  \r\n"
+				+ "				ELSE 0 END\r\n" + "			)\r\n" + "    		WHEN (caufis.AZIONE_COS_MED = 'Y' "
+				+ notLike + " AND mm.QTA_GIAC IN ('-') )\r\n"
+				+ "			THEN (QTA_MOVIMENTO * mm.COS_PRZ_EFF_PRM)\r\n" + "		ELSE 0 END\r\n"
+				+ "    	) AS VAL_SCARICHI\r\n" + "FROM\r\n" + "	THIP.MOVIM_MAGAZ mm\r\n" + "LEFT OUTER JOIN\r\n"
+				+ "        THIP.CAU_MOV_MAGAZ cauacq ON\r\n" + "	mm.R_AZIENDA = cauacq.ID_AZIENDA\r\n"
+				+ "	AND mm.R_CAU_MOV_MAG = cauacq.ID_CAU_MOV_MAG\r\n" + "LEFT OUTER JOIN\r\n"
+				+ "        THIP.CAU_FISCALE caufis ON\r\n" + "	cauacq.ID_AZIENDA = caufis.ID_AZIENDA\r\n"
+				+ "	AND cauacq.R_CAUSALE_FISCALE = caufis.ID_CAU_FISCALE\r\n"
+				+ "	AND mm.R_CAU_MOV_MAG = cauacq.ID_CAU_MOV_MAG\r\n" + "LEFT OUTER JOIN\r\n"
+				+ "        THIP.MAGAZZINI mag ON\r\n" + "	mag.ID_AZIENDA = mm.R_AZIENDA\r\n"
+				+ "	AND mag.ID_MAGAZZINO = mm.R_MAGAZZINO\r\n" + "LEFT OUTER JOIN \r\n"
+				+ "			THIP.ARTICOLI art ON\r\n" + "	mag.ID_AZIENDA = art.ID_AZIENDA\r\n"
+				+ "	AND mm.R_ARTICOLO = art.ID_ARTICOLO\r\n" + "LEFT OUTER JOIN \r\n"
+				+ "			THIP.CLASSI_FISCALI cf ON\r\n" + "	cf.ID_AZIENDA = art.ID_AZIENDA\r\n"
+				+ "	AND cf.ID_CLASSE_FISCALE = art.R_CLASSE_FISCALE";
+		statement += "    WHERE\r\n" + "        R_AZIENDA = '" + Azienda.getAziendaCorrente() + "'\r\n"
 				+ "     AND mag.RILEV_FISCALE = 'Y'    AND DTA_REGISTRAZIONE <= '" + this.getDataUltimaChiusuraString()
 				+ "'\r\n  AND YEAR(DTA_REGISTRAZIONE) = '" + this.getIdAnnoFiscale() + "'\r\n"
 				+ " 		AND (cf.ESCLUS_STP_FSC IS NULL OR cf.ESCLUS_STP_FSC <> 'Y')\r\n " + whereArticolo

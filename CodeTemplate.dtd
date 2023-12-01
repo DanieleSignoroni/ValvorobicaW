@@ -1,0 +1,38 @@
+<!ELEMENT CodeTemplate (JavaDoc,Comment,Declare,Class,UserCode)>
+<!ATTLIST CodeTemplate
+      NAME CDATA #IMPLIED
+      TEMPLATE_VERSION CDATA #REQUIRED
+      CODE_VERSION CDATA #REQUIRED
+      BRACES_POSITION (Up|Down) #REQUIRED
+      BLOCK_INDENT CDATA #REQUIRED>
+<!ELEMENT Attribute (JavaDoc,Comment,Declare)>
+<!ATTLIST Attribute
+      NAME CDATA #IMPLIED>
+<!ELEMENT Attributes (Attribute)+>
+<!ELEMENT Body (#PCDATA|Attributes|UserCode|Methods)*>
+<!ELEMENT Class (JavaDoc,Comment,Declare,Body)>
+<!ATTLIST Class
+      NAME CDATA #IMPLIED>
+<!ELEMENT Declare (#PCDATA|Package|Imports)*>
+<!ATTLIST Declare
+      TYPE (method | file | attribute | class) #IMPLIED>
+<!ELEMENT Imports (#PCDATA)>
+<!ELEMENT JavaDoc ANY>
+<!ATTLIST JavaDoc
+      TYPE (method | file | attribute | class) #IMPLIED>
+<!ELEMENT Comment ANY>
+<!ATTLIST Comment
+      TYPE (method | file | attribute | class) #IMPLIED>
+<!ELEMENT Method (JavaDoc,Comment,Declare,Body)>
+<!ATTLIST Method
+      NAME CDATA #IMPLIED>
+<!ELEMENT Methods (Method)+>
+<!ELEMENT Package (#PCDATA)>
+<!ELEMENT UserCode (#PCDATA)>
+<!ATTLIST UserCode
+      TYPE (methods | attributes | classes) #IMPLIED>
+<!ENTITY templateVersion "1.0">
+<!ENTITY className "YStoricoCmpLancio">
+<!ENTITY bracesPosition "Up">
+<!ENTITY blockIndent "2">
+<!ENTITY ref1 "YStoricoCmpLancioPO">

@@ -25,5 +25,6 @@
 <multisearchform name="TipoCosto" classRD="TipoCosto"/>
 <textinput classAD="DataUltimaChiusura" name="DataUltimaChiusura"/>
 <combobox classAD="StatoChiusuraMag" name="StatoChiusuraMag"/>
+<combobox classAD="AzzeraCostiManuali" name="AzzeraCostiManuali"/>
 </form>
 </tfml>
