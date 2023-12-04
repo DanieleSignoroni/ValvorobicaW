@@ -34,14 +34,21 @@ import it.thera.thip.acquisti.documentoAC.DocumentoAcqRigaSec;
 import it.thera.thip.base.articolo.Articolo;
 import it.thera.thip.base.articolo.ArticoloCosto;
 import it.thera.thip.base.articolo.ArticoloCostoTM;
+import it.thera.thip.base.articolo.ArticoloTM;
+import it.thera.thip.base.articolo.ClasseFiscaleTM;
 import it.thera.thip.base.articolo.TipoCosto;
 import it.thera.thip.base.azienda.Azienda;
+import it.thera.thip.base.azienda.MagazzinoTM;
+import it.thera.thip.base.comuniVenAcq.AzioneMagazzino;
 import it.thera.thip.cs.ThipException;
 import it.thera.thip.magazzino.chiusure.CalendarioFiscale;
+import it.thera.thip.magazzino.chiusure.CausaleFiscaleTM;
 import it.thera.thip.magazzino.chiusure.PeriodoCalFiscale;
 import it.thera.thip.magazzino.chiusure.PeriodoCalFiscaleTM;
 import it.thera.thip.magazzino.chiusure.RptStoricoCmpArticolo;
 import it.thera.thip.magazzino.chiusure.RptStoricoCmpArticoloTM;
+import it.thera.thip.magazzino.movimenti.CausaleMovimentoMagazzinoTM;
+import it.thera.thip.magazzino.movimenti.MovimentoMagazzinoTM;
 import it.thera.thip.produzione.ordese.AttivitaEsecMateriale;
 import it.thera.thip.produzione.ordese.AttivitaEsecutiva;
 import it.thera.thip.produzione.ordese.OrdineEsecutivo;
@@ -278,10 +285,10 @@ public class YValorizzazioneFiscaleValvo extends ElaboratePrintRunnable implemen
 			if (isCalcoloCMP()) {
 				storicizzaUltimoLancio();
 				cancellaStoricoSePeriodoMinore();
-				creaStoricoZero();
+				//creaStoricoZero();
 				if (getAzzeraCostiManuali() == YAzzeraCostiManualiCMP.SI) {
-					// azzero costi manuali di tutti i record ystoricocmpart con anno == quello
-					// nella form di lancio
+//					// azzero costi manuali di tutti i record ystoricocmpart con anno == quello
+//					// nella form di lancio
 					azzeraCostiManualiAnno(this.getIdAnnoFiscale());
 				}
 				storicizzazioneCostoMedioAnno(true, null);
@@ -530,19 +537,50 @@ public class YValorizzazioneFiscaleValvo extends ElaboratePrintRunnable implemen
 	protected void creaStoricoZero()
 			throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException {
 		ArrayList<String> idArticoli = new ArrayList<String>();
-		String statement = "SELECT R_ARTICOLO \r\n" + "FROM THIP.MOVIM_MAGAZ mm \r\n"
-				+ "LEFT OUTER JOIN THIP.ARTICOLI art \r\n"
-				+ "ON mm.R_AZIENDA = art.ID_AZIENDA AND mm.R_ARTICOLO = art.ID_ARTICOLO \r\n"
-				+ "LEFT OUTER JOIN THIP.CLASSI_FISCALI cf \r\n"
-				+ "ON cf.ID_AZIENDA = art.ID_AZIENDA AND cf.ID_CLASSE_FISCALE = art.R_CLASSE_FISCALE\r\n"
-				+ "WHERE R_AZIENDA = '" + Azienda.getAziendaCorrente() + "'\r\n" + "AND YEAR(DTA_REGISTRAZIONE) = '"
-				+ getIdAnnoFiscale() + "'\r\n" + "AND DTA_REGISTRAZIONE <= '" + getDataUltimaChiusuraString() + "'\r\n"
-				+ "AND (cf.ESCLUS_STP_FSC IS NULL OR cf.ESCLUS_STP_FSC <> 'Y')\r\n" + "AND NOT EXISTS (\r\n"
-				+ "	SELECT 1\r\n" + "	FROM THIPPERS.YSTOR_CMP_ARTICOLO yca \r\n"
-				+ "	WHERE yca.ID_AZIENDA = mm.R_AZIENDA \r\n"
-				+ "	AND yca.ID_ANNO_FISCALE = YEAR(mm.DTA_REGISTRAZIONE) \r\n"
-				+ "	AND yca.ID_ARTICOLO = mm.R_ARTICOLO \r\n" + "	AND yca.ID_PER_ANNO_FSC = 0\r\n" + ")"
-				+ "GROUP BY R_ARTICOLO ";
+//		String statement = "SELECT R_ARTICOLO \r\n" + "FROM THIP.MOVIM_MAGAZ mm \r\n"
+//				+ "LEFT OUTER JOIN THIP.ARTICOLI art \r\n"
+//				+ "ON mm.R_AZIENDA = art.ID_AZIENDA AND mm.R_ARTICOLO = art.ID_ARTICOLO \r\n"
+//				+ "LEFT OUTER JOIN THIP.CLASSI_FISCALI cf \r\n"
+//				+ "ON cf.ID_AZIENDA = art.ID_AZIENDA AND cf.ID_CLASSE_FISCALE = art.R_CLASSE_FISCALE\r\n"
+//				+ "WHERE R_AZIENDA = '" + Azienda.getAziendaCorrente() + "'\r\n" + "AND YEAR(DTA_REGISTRAZIONE) = '"
+//				+ getIdAnnoFiscale() + "'\r\n" + "AND DTA_REGISTRAZIONE <= '" + getDataUltimaChiusuraString() + "'\r\n"
+//				+ "AND (cf.ESCLUS_STP_FSC IS NULL OR cf.ESCLUS_STP_FSC <> 'Y')\r\n" + "AND NOT EXISTS (\r\n"
+//				+ "	SELECT 1\r\n" + "	FROM THIPPERS.YSTOR_CMP_ARTICOLO yca \r\n"
+//				+ "	WHERE yca.ID_AZIENDA = mm.R_AZIENDA \r\n"
+//				+ "	AND yca.ID_ANNO_FISCALE = YEAR(mm.DTA_REGISTRAZIONE) \r\n"
+//				+ "	AND yca.ID_ARTICOLO = mm.R_ARTICOLO \r\n" + "	AND yca.ID_PER_ANNO_FSC = 0\r\n" + ")"
+//				+ "GROUP BY R_ARTICOLO ";
+		String statement = "SELECT DISTINCT X.R_ARTICOLO "
+				+ "FROM ( "
+				+ "    SELECT R_ARTICOLO "
+				+ "    FROM THIP.MOVIM_MAGAZ mm "
+				+ "    LEFT OUTER JOIN THIP.ARTICOLI art ON mm.R_AZIENDA = art.ID_AZIENDA AND mm.R_ARTICOLO = art.ID_ARTICOLO "
+				+ "    LEFT OUTER JOIN THIP.CLASSI_FISCALI cf ON cf.ID_AZIENDA = art.ID_AZIENDA AND cf.ID_CLASSE_FISCALE = art.R_CLASSE_FISCALE "
+				+ "    WHERE R_AZIENDA = '"+Azienda.getAziendaCorrente()+"' "
+				+ "        AND YEAR(DTA_REGISTRAZIONE) = '"+this.getIdAnnoFiscale()+"' "
+				+ "        AND DTA_REGISTRAZIONE <= '"+getDataUltimaChiusuraString()+"' "
+				+ "        AND (cf.ESCLUS_STP_FSC IS NULL OR cf.ESCLUS_STP_FSC <> 'Y') "
+				+ "        AND NOT EXISTS ( "
+				+ "            SELECT 1 "
+				+ "            FROM THIPPERS.YSTOR_CMP_ARTICOLO yca "
+				+ "            WHERE yca.ID_AZIENDA = mm.R_AZIENDA "
+				+ "                AND yca.ID_ANNO_FISCALE = YEAR(mm.DTA_REGISTRAZIONE) "
+				+ "                AND yca.ID_ARTICOLO = mm.R_ARTICOLO "
+				+ "                AND yca.ID_PER_ANNO_FSC = 0 "
+				+ "        ) "
+				+ "    GROUP BY R_ARTICOLO "
+				+ " "
+				+ "    UNION ALL "
+				+ " "
+				+ "    SELECT R_ARTICOLO "
+				+ "    FROM THIP.MOVIM_MAGAZ mm "
+				+ "    LEFT OUTER JOIN THIP.ARTICOLI art ON mm.R_AZIENDA = art.ID_AZIENDA AND mm.R_ARTICOLO = art.ID_ARTICOLO "
+				+ "    LEFT OUTER JOIN THIP.CLASSI_FISCALI cf ON cf.ID_AZIENDA = art.ID_AZIENDA AND cf.ID_CLASSE_FISCALE = art.R_CLASSE_FISCALE "
+				+ "    WHERE R_AZIENDA = '"+Azienda.getAziendaCorrente()+"' "
+				+ "        AND YEAR(DTA_REGISTRAZIONE) = YEAR(GETDATE()) - 1 "
+				+ "        AND DTA_REGISTRAZIONE <= '"+getDataUltimaChiusuraString()+"' "
+				+ "        AND (cf.ESCLUS_STP_FSC IS NULL OR cf.ESCLUS_STP_FSC <> 'Y') "
+				+ ") X";
 		CachedStatement cs = new CachedStatement(statement);
 		ResultSet rs = cs.executeQuery();
 		while (rs.next()) {
@@ -566,8 +604,7 @@ public class YValorizzazioneFiscaleValvo extends ElaboratePrintRunnable implemen
 			storicoZero.setIdArticolo(idArticolo);
 			storicoZero.setIdConfigurazione(0);
 			storicoZero.setIdRaggrFiscMag("RF1");
-			YStoricoCmpArticolo storicoPrecedente = YStoricoCmpArticolo
-					.cercaStoricoPrecedenteStatico(Azienda.getAziendaCorrente(), getIdAnnoFiscale(), idArticolo);
+			YStoricoCmpArticolo storicoPrecedente = YStoricoCmpArticolo.cercaStoricoPrecedenteStatico(Azienda.getAziendaCorrente(), getIdAnnoFiscale(), idArticolo);
 			if (storicoPrecedente != null) {
 				storicoZero.setGiacenzaFinale(storicoPrecedente.getGiacenzaFinale());
 				storicoZero.setValoreFinale(storicoPrecedente.getValoreFinale());
@@ -836,9 +873,6 @@ public class YValorizzazioneFiscaleValvo extends ElaboratePrintRunnable implemen
 	 * @throws SQLException
 	 */
 	protected void aggiornaCostoMovimMagaz(YOggettinoAggMovim ogg, BigDecimal prezzo) throws Exception {
-		if (prezzo.compareTo(BigDecimal.ZERO) == 0) {
-			writeLog("Prezzo 0 per articolo : " + ogg.iIdArticolo + ", movimento : " + ogg.iNumRegistrazione);
-		}
 		CachedStatement cs = null;
 		try {
 			String query = "UPDATE THIP.MOVIM_MAGAZ  " + "SET COS_PRZ_EFF_PRM = '" + prezzo.toString() + "' "
@@ -1086,8 +1120,9 @@ public class YValorizzazioneFiscaleValvo extends ElaboratePrintRunnable implemen
 			BigDecimal costoMedioPondDiv = getBigDecimalValue(storicoPrecedente.getGiacenzaFinale())
 					.add(getBigDecimalValue(storicoValvo.getQtaCarichi()));
 			if (costoMedioPondDiv.compareTo(BigDecimal.ZERO) > 0) {
-				costoMedioPond = (getBigDecimalValue(storicoPrecedente.getValoreFinale())
-						.add(storicoValvo.getValoreCarichi())).divide(costoMedioPondDiv, 6, BigDecimal.ROUND_HALF_UP);
+				costoMedioPond = (getBigDecimalValue(storicoPrecedente.getValoreFinale()).add(
+						storicoValvo.getValoreCarichi() != null ? storicoValvo.getValoreCarichi() : BigDecimal.ZERO))
+						.divide(costoMedioPondDiv, 6, BigDecimal.ROUND_HALF_UP);
 			}
 
 			// CAlcolo del valore finale
@@ -1139,94 +1174,73 @@ public class YValorizzazioneFiscaleValvo extends ElaboratePrintRunnable implemen
 		String like = "", notLike = "";
 		String whereArticolo = "";
 		if (consideroAcquisto) {
-			like = " AND TIPO_DOCUMENTO LIKE 'A%' ";
-			notLike = " OR TIPO_DOCUMENTO NOT LIKE 'A%' ";
+			like = " AND "+MovimentoMagazzinoTM.TIPO_DOCUMENTO+" LIKE 'A%' ";
+			notLike = " OR "+MovimentoMagazzinoTM.TIPO_DOCUMENTO+" NOT LIKE 'A%' ";
 		} else {
-			whereArticolo = " AND mm.R_ARTICOLO = '" + idArticolo + "' \r\n";
+			whereArticolo = " AND MM."+MovimentoMagazzinoTM.R_ARTICOLO+" = '" + idArticolo + "' ";
 		}
-		String statement = "SELECT\r\n" + "        R_AZIENDA,\r\n"
-				+ "        YEAR(DTA_REGISTRAZIONE) AS R_ANNO_FISCALE,\r\n" + "        mag.R_RAG_FSC_MAG,\r\n"
-				+ "        R_ARTICOLO,\r\n" + "        R_CONFIG,mm.R_UNITA_MISURA,\r\n" + "        --CARICHI\r\n"
-				+ "        SUM(CASE \r\n" + "        		WHEN caufis.AZIONE_COS_MED='Y' " + like
-				+ " AND mm.QTA_GIAC='E' THEN QTA_MOVIMENTO \r\n" + "    			WHEN caufis.AZIONE_COS_MED='Y' "
-				+ like + " AND mm.QTA_GIAC='U' THEN QTA_MOVIMENTO * -1\r\n" + "    			ELSE 0 END) AS CARICHI,\r\n"
-				+ "		--SCARICHI\r\n" + "    	SUM(CASE \r\n" + "    			WHEN (caufis.AZIONE_COS_MED = 'N' "
-				+ notLike + ") AND mm.QTA_GIAC ='U' THEN QTA_MOVIMENTO \r\n"
-				+ "    			WHEN (caufis.AZIONE_COS_MED = 'N' " + notLike
-				+ ") AND mm.QTA_GIAC ='E' THEN QTA_MOVIMENTO * -1\r\n" + "    			ELSE 0 END\r\n"
-				+ "    	) AS SCARICHI,\r\n" + "         --VALORI CARICHI\r\n" + "        SUM(CASE \r\n"
-				+ "        		WHEN caufis.AZIONE_COS_MED='Y' " + like
-				+ " AND mm.QTA_GIAC='E' THEN (QTA_MOVIMENTO * mm.COS_PRZ_EFF_PRM) \r\n"
-				+ "    			WHEN caufis.AZIONE_COS_MED='Y' " + like
-				+ " AND mm.QTA_GIAC='U' THEN (QTA_MOVIMENTO * mm.COS_PRZ_EFF_PRM) * -1\r\n"
-				+ "    			ELSE 0 END) AS VAL_CARICHI,\r\n" + "		--VALORI SCARICHI\r\n"
-				+ "    	SUM(CASE \r\n" + "    			WHEN (caufis.AZIONE_COS_MED = 'N' " + notLike
-				+ ") AND mm.QTA_GIAC ='U' THEN (QTA_MOVIMENTO * mm.COS_PRZ_EFF_PRM) \r\n"
-				+ "    			WHEN (caufis.AZIONE_COS_MED = 'N' " + notLike
-				+ ") AND mm.QTA_GIAC ='E' THEN (QTA_MOVIMENTO * mm.COS_PRZ_EFF_PRM) * -1\r\n"
-				+ "    			ELSE 0 END\r\n" + "    	) AS VAL_SCARICHI        \r\n" + "    FROM\r\n"
-				+ "        THIP.MOVIM_MAGAZ mm\r\n" + "    LEFT OUTER JOIN\r\n"
-				+ "        THIP.CAU_MOV_MAGAZ cauacq ON mm.R_AZIENDA = cauacq.ID_AZIENDA AND mm.R_CAU_MOV_MAG = cauacq.ID_CAU_MOV_MAG\r\n"
-				+ "    LEFT OUTER JOIN\r\n"
-				+ "        THIP.CAU_FISCALE caufis ON cauacq.ID_AZIENDA = caufis.ID_AZIENDA AND cauacq.R_CAUSALE_FISCALE = caufis.ID_CAU_FISCALE AND mm.R_CAU_MOV_MAG = cauacq.ID_CAU_MOV_MAG\r\n"
-				+ "    LEFT OUTER JOIN\r\n"
-				+ "        THIP.MAGAZZINI mag ON mag.ID_AZIENDA = mm.R_AZIENDA AND mag.ID_MAGAZZINO = mm.R_MAGAZZINO\r\n"
-				+ "		LEFT OUTER JOIN \r\n"
-				+ "			THIP.ARTICOLI art ON mag.ID_AZIENDA = art.ID_AZIENDA AND mm.R_ARTICOLO = art.ID_ARTICOLO \r\n"
-				+ "		LEFT OUTER JOIN \r\n"
-				+ "			THIP.CLASSI_FISCALI cf ON cf.ID_AZIENDA = art.ID_AZIENDA AND cf.ID_CLASSE_FISCALE = art.R_CLASSE_FISCALE\r\n "
-				+ "    WHERE\r\n" + "        R_AZIENDA = '" + Azienda.getAziendaCorrente() + "'\r\n"
-				+ "     AND mag.RILEV_FISCALE = 'Y'    AND DTA_REGISTRAZIONE <= '" + this.getDataUltimaChiusuraString()
-				+ "'\r\n  AND YEAR(DTA_REGISTRAZIONE) = '" + this.getIdAnnoFiscale() + "'\r\n"
-				+ " 		AND (cf.ESCLUS_STP_FSC IS NULL OR cf.ESCLUS_STP_FSC <> 'Y')\r\n " + whereArticolo
-				+ "    GROUP BY\r\n" + "        R_AZIENDA,\r\n" + "        YEAR(DTA_REGISTRAZIONE),\r\n"
-				+ "        mag.R_RAG_FSC_MAG,\r\n" + "        R_ARTICOLO,\r\n"
-				+ "        R_CONFIG,mm.R_UNITA_MISURA\r\n" + "	ORDER BY R_ARTICOLO ";
-		statement = "SELECT\r\n" + "	R_AZIENDA,\r\n" + "	YEAR(DTA_REGISTRAZIONE) AS R_ANNO_FISCALE,\r\n"
-				+ "	mag.R_RAG_FSC_MAG,\r\n" + "	R_ARTICOLO,\r\n" + "	R_CONFIG,\r\n" + "	mm.R_UNITA_MISURA,\r\n"
-				+ "	SUM(CASE WHEN (caufis.AZIONE_COS_MED = 'Y' " + like + " AND mm.QTA_GIAC IN ('U', 'E') )\r\n"
-				+ "			THEN (\r\n" + "				CASE caufis.AZIONE_MAGAZ WHEN 'E' THEN QTA_MOVIMENTO\r\n"
-				+ "				WHEN 'U' THEN QTA_MOVIMENTO * -1 \r\n" + "				ELSE 0 END\r\n"
-				+ "			)\r\n" + "			WHEN (caufis.AZIONE_COS_MED = 'Y' " + like
-				+ " AND mm.QTA_GIAC IN ('-') )\r\n" + "			THEN QTA_MOVIMENTO\r\n" + "		ELSE 0 END\r\n"
-				+ "		) AS CARICHI,\r\n" + "	SUM(CASE WHEN (caufis.AZIONE_COS_MED = 'N' " + notLike
-				+ " AND mm.QTA_GIAC IN ('U', 'E') )\r\n" + "			THEN (\r\n"
-				+ "				CASE caufis.AZIONE_MAGAZ WHEN 'E' THEN QTA_MOVIMENTO * -1\r\n"
-				+ "				WHEN 'U' THEN QTA_MOVIMENTO \r\n" + "				ELSE 0 END\r\n" + "			)\r\n"
-				+ "    		WHEN (caufis.AZIONE_COS_MED = 'Y' " + notLike + " AND mm.QTA_GIAC IN ('-') )\r\n"
-				+ "			THEN QTA_MOVIMENTO\r\n" + "		ELSE 0 END\r\n" + "    	) AS SCARICHI,\r\n"
-				+ "	SUM(CASE WHEN (caufis.AZIONE_COS_MED = 'Y' " + like + " AND mm.QTA_GIAC IN ('U', 'E') )\r\n"
-				+ "			THEN (\r\n"
-				+ "				CASE caufis.AZIONE_MAGAZ WHEN 'E' THEN (QTA_MOVIMENTO * mm.COS_PRZ_EFF_PRM)\r\n"
-				+ "				WHEN 'U' THEN (QTA_MOVIMENTO * mm.COS_PRZ_EFF_PRM) * -1 \r\n"
-				+ "				ELSE 0 END\r\n" + "			)\r\n" + "			WHEN (caufis.AZIONE_COS_MED = 'Y' "
-				+ like + " AND mm.QTA_GIAC IN ('-') )\r\n" + "			THEN (QTA_MOVIMENTO * mm.COS_PRZ_EFF_PRM)\r\n"
-				+ "		ELSE 0 END\r\n" + "		) AS VAL_CARICHI,\r\n" + "	SUM(CASE WHEN (caufis.AZIONE_COS_MED = 'N' "
-				+ notLike + " AND mm.QTA_GIAC IN ('U', 'E') )\r\n" + "			THEN (\r\n"
-				+ "				CASE caufis.AZIONE_MAGAZ WHEN 'E' THEN (QTA_MOVIMENTO * mm.COS_PRZ_EFF_PRM) * -1\r\n"
-				+ "				WHEN 'U' THEN (QTA_MOVIMENTO * mm.COS_PRZ_EFF_PRM)  \r\n"
-				+ "				ELSE 0 END\r\n" + "			)\r\n" + "    		WHEN (caufis.AZIONE_COS_MED = 'Y' "
-				+ notLike + " AND mm.QTA_GIAC IN ('-') )\r\n"
-				+ "			THEN (QTA_MOVIMENTO * mm.COS_PRZ_EFF_PRM)\r\n" + "		ELSE 0 END\r\n"
-				+ "    	) AS VAL_SCARICHI\r\n" + "FROM\r\n" + "	THIP.MOVIM_MAGAZ mm\r\n" + "LEFT OUTER JOIN\r\n"
-				+ "        THIP.CAU_MOV_MAGAZ cauacq ON\r\n" + "	mm.R_AZIENDA = cauacq.ID_AZIENDA\r\n"
-				+ "	AND mm.R_CAU_MOV_MAG = cauacq.ID_CAU_MOV_MAG\r\n" + "LEFT OUTER JOIN\r\n"
-				+ "        THIP.CAU_FISCALE caufis ON\r\n" + "	cauacq.ID_AZIENDA = caufis.ID_AZIENDA\r\n"
-				+ "	AND cauacq.R_CAUSALE_FISCALE = caufis.ID_CAU_FISCALE\r\n"
-				+ "	AND mm.R_CAU_MOV_MAG = cauacq.ID_CAU_MOV_MAG\r\n" + "LEFT OUTER JOIN\r\n"
-				+ "        THIP.MAGAZZINI mag ON\r\n" + "	mag.ID_AZIENDA = mm.R_AZIENDA\r\n"
-				+ "	AND mag.ID_MAGAZZINO = mm.R_MAGAZZINO\r\n" + "LEFT OUTER JOIN \r\n"
-				+ "			THIP.ARTICOLI art ON\r\n" + "	mag.ID_AZIENDA = art.ID_AZIENDA\r\n"
-				+ "	AND mm.R_ARTICOLO = art.ID_ARTICOLO\r\n" + "LEFT OUTER JOIN \r\n"
-				+ "			THIP.CLASSI_FISCALI cf ON\r\n" + "	cf.ID_AZIENDA = art.ID_AZIENDA\r\n"
-				+ "	AND cf.ID_CLASSE_FISCALE = art.R_CLASSE_FISCALE";
-		statement += "    WHERE\r\n" + "        R_AZIENDA = '" + Azienda.getAziendaCorrente() + "'\r\n"
-				+ "     AND mag.RILEV_FISCALE = 'Y'    AND DTA_REGISTRAZIONE <= '" + this.getDataUltimaChiusuraString()
-				+ "'\r\n  AND YEAR(DTA_REGISTRAZIONE) = '" + this.getIdAnnoFiscale() + "'\r\n"
-				+ " 		AND (cf.ESCLUS_STP_FSC IS NULL OR cf.ESCLUS_STP_FSC <> 'Y')\r\n " + whereArticolo
-				+ "    GROUP BY\r\n" + "        R_AZIENDA,\r\n" + "        YEAR(DTA_REGISTRAZIONE),\r\n"
-				+ "        mag.R_RAG_FSC_MAG,\r\n" + "        R_ARTICOLO,\r\n"
-				+ "        R_CONFIG,mm.R_UNITA_MISURA\r\n" + "	ORDER BY R_ARTICOLO ";
+		String statement = "SELECT "
+				+ " "+MovimentoMagazzinoTM.R_AZIENDA+","
+				+ " YEAR("+MovimentoMagazzinoTM.DTA_REGISTRAZIONE+") AS R_ANNO_FISCALE,"
+				+ "	MAG."+MagazzinoTM.R_RAG_FSC_MAG+","
+				+ " "+MovimentoMagazzinoTM.R_ARTICOLO+","
+				+ " "+MovimentoMagazzinoTM.R_CONFIG+","
+				+ " MM."+MovimentoMagazzinoTM.R_UNITA_MISURA+","
+				+ "	SUM(CASE WHEN (CAUFIS."+CausaleFiscaleTM.AZIONE_COS_MED+" = 'Y' " + like + " AND MM."+MovimentoMagazzinoTM.QTA_GIAC+" IN ('U', 'E') ) "
+				+ "			THEN (CASE CAUFIS."+CausaleFiscaleTM.AZIONE_MAGAZ+" WHEN '"+AzioneMagazzino.ENTRATA+"' THEN "+MovimentoMagazzinoTM.QTA_MOVIMENTO+" "
+				+ "				WHEN '"+AzioneMagazzino.USCITA+"' THEN ("+MovimentoMagazzinoTM.QTA_MOVIMENTO+" * -1) "
+				+ "	ELSE 0 END) "
+				+ "WHEN (MM."+MovimentoMagazzinoTM.QTA_GIAC+" IN ('-') ) THEN "+MovimentoMagazzinoTM.QTA_MOVIMENTO+" "
+				+ "		ELSE 0 END)"
+				+ " AS CARICHI,"
+				+ "SUM(CASE WHEN (CAUFIS."+CausaleFiscaleTM.AZIONE_COS_MED+" = 'N' "+notLike + " AND MM."+MovimentoMagazzinoTM.QTA_GIAC+" IN ('"+AzioneMagazzino.USCITA+"', '"+AzioneMagazzino.ENTRATA+"') ) "
+				+ "			THEN (CASE CAUFIS."+CausaleFiscaleTM.AZIONE_MAGAZ+" WHEN '"+AzioneMagazzino.ENTRATA+"' THEN ("+MovimentoMagazzinoTM.QTA_MOVIMENTO+" * -1) "
+				+ "					WHEN '"+AzioneMagazzino.USCITA+"' THEN "+MovimentoMagazzinoTM.QTA_MOVIMENTO+" "
+				+ "			ELSE 0 END) "
+				+ "    		WHEN (MM."+MovimentoMagazzinoTM.QTA_GIAC+" IN ('-') ) THEN "+MovimentoMagazzinoTM.QTA_MOVIMENTO+" "
+				+ "		ELSE 0 END) "
+				+ " AS SCARICHI,"
+				+ "	SUM(CASE WHEN (MM."+MovimentoMagazzinoTM.QTA_GIAC+" IN ('"+AzioneMagazzino.USCITA+"', '"+AzioneMagazzino.ENTRATA+"') AND CAUFIS."+CausaleFiscaleTM.AZIONE_COS_MED+" = 'Y' " + like + " ) "
+				+ "			THEN ( "
+				+ "				CASE CAUFIS."+CausaleFiscaleTM.AZIONE_MAGAZ+" WHEN '"+AzioneMagazzino.ENTRATA+"' THEN ("+MovimentoMagazzinoTM.QTA_MOVIMENTO+" * MM."+MovimentoMagazzinoTM.COS_PRZ_EFF_PRM+") "
+				+ "				WHEN '"+AzioneMagazzino.USCITA+"' THEN (("+MovimentoMagazzinoTM.QTA_MOVIMENTO+" * MM."+MovimentoMagazzinoTM.COS_PRZ_EFF_PRM+") * -1) "
+				+ "				ELSE 0 END " + "			) " + "			WHEN (MM.QTA_GIAC IN ('-') ) "
+				+ "			THEN ("+MovimentoMagazzinoTM.QTA_MOVIMENTO+" * MM."+MovimentoMagazzinoTM.COS_PRZ_EFF_PRM+") " + "		ELSE 0 END "
+				+ "		) AS VAL_CARICHI, " + "	SUM(CASE WHEN (CAUFIS.AZIONE_COS_MED = 'N' " + notLike
+				+ " AND MM.QTA_GIAC IN ('"+AzioneMagazzino.USCITA+"', '"+AzioneMagazzino.ENTRATA+"') ) " + "			THEN ( "
+				+ "				CASE CAUFIS."+CausaleFiscaleTM.AZIONE_MAGAZ+" WHEN '"+AzioneMagazzino.ENTRATA+"' THEN (("+MovimentoMagazzinoTM.QTA_MOVIMENTO+" * MM."+MovimentoMagazzinoTM.COS_PRZ_EFF_PRM+") * -1) "
+				+ "				WHEN '"+AzioneMagazzino.USCITA+"' THEN ("+MovimentoMagazzinoTM.QTA_MOVIMENTO+" * MM."+MovimentoMagazzinoTM.COS_PRZ_EFF_PRM+")   "
+				+ "				ELSE 0 END " + "			) " + "    		WHEN (MM.QTA_GIAC IN ('-') ) "
+				+ "			THEN ("+MovimentoMagazzinoTM.QTA_MOVIMENTO+" * MM."+MovimentoMagazzinoTM.COS_PRZ_EFF_PRM+") " + "		ELSE 0 END "
+				+ "    	) "
+				+ " AS VAL_SCARICHI "
+				+ "FROM "+MovimentoMagazzinoTM.TABLE_NAME+" MM "
+				+ "LEFT OUTER JOIN "+CausaleMovimentoMagazzinoTM.TABLE_NAME+" CAUACQ "
+				+ "ON MM."+MovimentoMagazzinoTM.R_AZIENDA+" = CAUACQ."+CausaleMovimentoMagazzinoTM.ID_AZIENDA+" "
+				+ "AND MM."+MovimentoMagazzinoTM.R_CAU_MOV_MAG+" = CAUACQ."+CausaleMovimentoMagazzinoTM.ID_CAU_MOV_MAG+" "
+				+ "LEFT OUTER JOIN "+CausaleFiscaleTM.TABLE_NAME+" CAUFIS "
+				+ "ON CAUACQ."+CausaleMovimentoMagazzinoTM.ID_AZIENDA+" = CAUFIS."+CausaleFiscaleTM.ID_AZIENDA+" "
+				+ "AND CAUACQ."+CausaleMovimentoMagazzinoTM.R_CAUSALE_FISCALE+" = CAUFIS."+CausaleFiscaleTM.ID_CAU_FISCALE+" "
+				+ "AND MM."+MovimentoMagazzinoTM.R_CAU_MOV_MAG+" = CAUACQ."+CausaleMovimentoMagazzinoTM.ID_CAU_MOV_MAG+" "
+				+ "LEFT OUTER JOIN "+MagazzinoTM.TABLE_NAME+" MAG "
+				+ "ON MAG."+MagazzinoTM.ID_AZIENDA+" = MM."+MovimentoMagazzinoTM.R_AZIENDA+" "
+				+ "AND MAG."+MagazzinoTM.ID_MAGAZZINO+" = MM."+MovimentoMagazzinoTM.R_MAGAZZINO+" " + ""
+				+ "LEFT OUTER JOIN "+ArticoloTM.TABLE_NAME+" ART "
+				+ "ON MAG."+MagazzinoTM.ID_AZIENDA+" = ART."+ArticoloTM.ID_AZIENDA+" "
+				+ "AND MM."+MovimentoMagazzinoTM.R_ARTICOLO+" = ART."+ArticoloTM.ID_ARTICOLO+" "
+				+ "LEFT OUTER JOIN "+ClasseFiscaleTM.TABLE_NAME+" CF "
+				+ "ON CF."+ClasseFiscaleTM.ID_AZIENDA+" = ART."+ArticoloTM.ID_AZIENDA+" "
+				+ "AND CF."+ClasseFiscaleTM.ID_CLASSE_FISCALE+" = ART.R_CLASSE_FISCALE ";
+		statement += "WHERE "+MovimentoMagazzinoTM.R_AZIENDA+" = '" + Azienda.getAziendaCorrente() + "' "
+				+ "   AND MAG."+MagazzinoTM.RILEV_FISCALE+" = 'Y'    AND MM."+MovimentoMagazzinoTM.DTA_REGISTRAZIONE+" <= '" + this.getDataUltimaChiusuraString()
+				+ "'  AND YEAR("+MovimentoMagazzinoTM.DTA_REGISTRAZIONE+") = '" + this.getIdAnnoFiscale() + "' "
+				+ "   AND (CF."+ClasseFiscaleTM.ESCLUS_STP_FSC+" IS NULL OR CF."+ClasseFiscaleTM.ESCLUS_STP_FSC+" <> 'Y') " + whereArticolo;
+		statement += "GROUP BY "+MovimentoMagazzinoTM.R_AZIENDA+","
+				+ "   YEAR("+MovimentoMagazzinoTM.DTA_REGISTRAZIONE+"),"
+				+ "   MAG."+MagazzinoTM.R_RAG_FSC_MAG+","
+				+ "   MM."+MovimentoMagazzinoTM.R_ARTICOLO+", "
+				+ "   MM."+MovimentoMagazzinoTM.R_CONFIG+","
+				+ "	  MM."+MovimentoMagazzinoTM.R_UNITA_MISURA+" ORDER BY "+MovimentoMagazzinoTM.R_ARTICOLO+" ";
 		ResultSet rs = null;
 		CachedStatement cs = new CachedStatement(statement);
 		rs = cs.executeQuery();
