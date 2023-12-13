@@ -56,6 +56,14 @@ public class YOffertaFornitoreRigaPrm extends OffertaFornitoreRigaPrm {
 	public int salvaTestata(int rc) throws SQLException {
 		OffertaFornitore offTes = (OffertaFornitore) this.getTestata();
 		Object[] pesi = getPesITotalRigheOffertaFornitore(offTes);
+		if(pesi != null) {
+			if(pesi[0] != null) {
+				offTes.setPesoNetto((BigDecimal) pesi[0]);
+			}
+			if(pesi[1] != null) {
+				offTes.setPesoLordo((BigDecimal) pesi[1]);
+			}
+		}
 		return super.salvaTestata(rc);
 	}
 
