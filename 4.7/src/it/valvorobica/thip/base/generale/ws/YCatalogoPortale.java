@@ -272,7 +272,7 @@ public class YCatalogoPortale extends GenRequestJSON {
 	public String formatUrlImgForPortal(String urlImg) {
 		String userDirectory = System.getProperty("user.dir") + "\\" + "WebContent";
 		urlImg = urlImg.replace(userDirectory, "");
-		String wb = appPref.getURLPubblico() + "/ImmaginiPortale/";
+		String wb = "/Valvorobica" + "/ImmaginiPortale/";
 		String fileName = null;
 		fileName = urlImg.substring(urlImg.lastIndexOf("\\") + 1, urlImg.length());
 		urlImg = wb + fileName;
