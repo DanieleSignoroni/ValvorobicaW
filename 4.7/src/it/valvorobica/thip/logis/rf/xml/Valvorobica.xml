@@ -1,0 +1,463 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE LogisLogin SYSTEM "Lg.dtd">
+<LogisLogin>
+    <form Name="YpaginaCommento" Beep="alert" Type="normal" Acknowledge="lastField">
+        <field Name="ESCLbl" Sequence="1" Row="1" Column="1" Width="8" Height="1" Visible="true" Value="ENTER = Avanti" SourceType="all" AcceptValueMode="enter" Mandatory="false">
+            <type Display="output" Size="20" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+        </field>
+         <field Name="TastoF8" Sequence="10" Row="15" Column="1" Width="8" Height="1" Visible="true" Value="F8=PG_SU" SourceType="all" AcceptValueMode="enter" Mandatory="false" RESId="paginaDestinazioneCambioUbic_TastoF8">
+        <type Display="output" Size="21" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+    </field>
+    <field Name="TastoF2" Sequence="11" Row="16" Column="1" Width="9" Height="1" Visible="true" Value="F2=PG_GIU" SourceType="all" AcceptValueMode="enter" Mandatory="false" RESId="paginaDestinazioneCambioUbic_TastoF2">
+        <type Display="output" Size="21" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+    </field>
+   <list Name="MeggaggioCommento" Header="true" Check="multiple" Row="2" Column="1" Width="21" Height="13" Visible="true">
+            <item RESId="messaggioCommento">Commento</item>
+        </list>
+        <hotkeys>
+            <key Name="F8" Function="PG_UP"/>
+            <key Name="F2" Function="PG_DOWN"/>
+        </hotkeys>
+    </form>
+     <form Name="YvisualizzaMissioneUds" Beep="none" Type="normal" Acknowledge="byFKey">
+    <field Name="TastoESC" Sequence="1" Row="1" Column="1" Width="12" Height="1" Visible="true" Value="CTL_X=Missioni">
+      <type Display="output" Size="12" Scale="0">com.thera.thermfw.type.StringType</type>
+    </field>
+    <field Name="TastoF1" Sequence="2" Row="1" Column="16" Width="5" Height="1" Visible="true" Value="F1=OK">
+      <type Display="output" Size="5" Scale="0">com.thera.thermfw.type.StringType</type>
+    </field>
+    <field Name="TitoloLbl" Sequence="2" Row="2" Column="1" Width="15" Height="1" Visible="true" SourceType="all" AcceptValueMode="enter" Mandatory="false">
+      <type Display="output" Size="15" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+    </field>
+    <field Name="UMLbl" Sequence="3" Row="2" Column="16" Width="3" Height="1" Visible="true" SourceType="all" AcceptValueMode="enter" Mandatory="false">
+      <type Display="output" Size="3" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+    </field>
+    <field Name="UMVal" Sequence="4" Row="2" Column="19" Width="2" Height="1" Visible="true" SourceType="all" AcceptValueMode="enter" Mandatory="false">
+      <type Display="output" Size="2" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+    </field>
+    <field Name="ArticoloLbl" Sequence="5" Row="3" Column="1" Width="4" Height="1" Visible="true" SourceType="all" AcceptValueMode="enter" Mandatory="false">
+      <type Display="output" Size="4" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+    </field>
+    <field Name="CodiceArticoloVal" Sequence="6" Row="3" Column="5" Width="17" Height="1" Visible="true" SourceType="all" AcceptValueMode="enter" Mandatory="false">
+      <type Display="output" Size="17" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+    </field>
+    <field Name="DescrArticoloVal" Sequence="7" Row="4" Column="1" Width="21" Height="2" Visible="true" SourceType="all" AcceptValueMode="enter" Mandatory="false">
+      <type Display="output" Size="21" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+    </field>
+    <field Name="VersioneLbl" Sequence="8" Row="5" Column="1" Width="4" Height="1" Visible="false" SourceType="all" AcceptValueMode="enter" Mandatory="false">
+      <type Display="output" Size="4" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+    </field>
+    <field Name="VersioneVal" Sequence="8" Row="5" Column="5" Width="17" Height="1" Visible="false" SourceType="all" AcceptValueMode="enter" Mandatory="false">
+      <type Display="output" Size="17" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+    </field>
+    <field Name="ArticoloMatricolato" Sequence="8" Row="5" Column="12" Width="10" Height="1" Visible="false" SourceType="all" AcceptValueMode="enter" Mandatory="false">
+      <type Display="output" Size="10" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+    </field>
+    <field Name="Lotto1Lbl" Sequence="8" Row="6" Column="1" Width="4" Height="1" Visible="false" SourceType="all" AcceptValueMode="enter" Mandatory="false">
+      <type Display="output" Size="4" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+    </field>
+    <field Name="Lotto1Val" Sequence="9" Row="6" Column="5" Width="17" Height="1" Visible="false" SourceType="all" AcceptValueMode="enter" Mandatory="false">
+      <type Display="output" Size="17" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+    </field>
+    <field Name="Lotto2Lbl" Sequence="10" Row="7" Column="1" Width="4" Height="1" Visible="false" SourceType="all" AcceptValueMode="enter" Mandatory="false">
+      <type Display="output" Size="4" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+    </field>
+    <field Name="Lotto2Val" Sequence="11" Row="7" Column="5" Width="17" Height="1" Visible="false" SourceType="all" AcceptValueMode="enter" Mandatory="false">
+      <type Display="output" Size="17" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+    </field>
+    <field Name="UbicSaldoLbl" Sequence="12" Row="8" Column="1" Width="4" Height="1" Visible="true" SourceType="all" AcceptValueMode="enter" Mandatory="false">
+      <type Display="output" Size="4" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+    </field>
+    <field Name="UbicSaldoVal" Sequence="13" Row="8" Column="5" Width="17" Height="1" Visible="true" SourceType="all" AcceptValueMode="enter" Mandatory="false">
+      <type Display="output" Size="17" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+    </field>
+    <field Name="UdcLbl" Sequence="14" Row="9" Column="1" Width="4" Height="1" Visible="true" SourceType="all" AcceptValueMode="enter" Mandatory="false">
+      <type Display="output" Size="4" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+    </field>
+    <field Name="UdcVal" Sequence="15" Row="9" Column="5" Width="17" Height="1" Visible="true" SourceType="all" AcceptValueMode="enter" Mandatory="false">
+      <type Display="output" Size="17" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+    </field>
+    <field Name="UbicDestLbl" Sequence="16" Row="10" Column="1" Width="4" Height="1" Visible="true" SourceType="all" AcceptValueMode="enter" Mandatory="false">
+      <type Display="output" Size="4" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+    </field>
+    <field Name="UbicDestVal" Sequence="17" Row="10" Column="5" Width="17" Height="1" Visible="true" SourceType="all" AcceptValueMode="enter" Mandatory="false">
+      <type Display="output" Size="17" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+    </field>
+    <field Name="QtaGiacienzaLbl" Sequence="18" Row="11" Column="1" Width="4" Height="1" Visible="true" SourceType="all" AcceptValueMode="enter" Mandatory="false">
+      <type Display="output" Size="4" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+    </field>
+    <field Name="QtaGiacienzaVal" Sequence="19" Row="11" Column="5" Width="6" Height="1" Visible="true" SourceType="all" AcceptValueMode="enter" Mandatory="false">
+      <type Display="output" Size="6" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+    </field>
+    <field Name="QtaDisponibileLbl" Sequence="20" Row="11" Column="12" Width="4" Height="1" Visible="true" SourceType="all" AcceptValueMode="enter" Mandatory="false">
+      <type Display="output" Size="4" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+    </field>
+    <field Name="QtaDisponibileVal" Sequence="21" Row="11" Column="16" Width="6" Height="1" Visible="true" SourceType="all" AcceptValueMode="enter" Mandatory="false">
+      <type Display="output" Size="6" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+    </field>
+    <field Name="BarcodeLbl" Sequence="22" Row="12" Column="1" Width="4" Height="1" Visible="true" SourceType="all" AcceptValueMode="enter" Mandatory="false">
+      <type Display="output" Size="4" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+    </field>
+    <field Name="BarcodeTxt" Sequence="23" Row="12" Column="5" Width="60" Height="1" Visible="true" SourceType="all" AcceptValueMode="enter" Mandatory="false">
+      <type Display="input" Size="60" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+    </field>
+    <field Name="QtaRichiestaLbl" Sequence="24" Row="13" Column="1" Width="4" Height="1" Visible="true" SourceType="all" AcceptValueMode="enter" Mandatory="false">
+      <type Display="output" Size="4" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+    </field>
+    <field Name="QtaRichiestaVal" Sequence="25" Row="13" Column="5" Width="6" Height="1" Visible="true" SourceType="all" AcceptValueMode="enter" Mandatory="false">
+      <type Display="output" Size="6" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+    </field>
+    <field Name="QtaConfermataLbl" Sequence="26" Row="13" Column="12" Width="4" Height="1" Visible="true" SourceType="all" AcceptValueMode="enter" Mandatory="false">
+      <type Display="output" Size="4" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+    </field>
+    <field Name="QtaConfermataTxt" Sequence="27" Row="13" Column="16" Width="12" Height="1" Visible="true" SourceType="all" AcceptValueMode="enter" Mandatory="false">
+      <type Display="input" Size="12" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+    </field>
+    <field Name="UDSLbl" Sequence="28" Row="14" Column="1" Width="4" Height="1" Visible="true" SourceType="all" AcceptValueMode="enter" Mandatory="false">
+      <type Display="output" Size="4" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+    </field>
+    <field Name="UDSTxt" Sequence="29" Row="14" Column="5" Width="17" Height="1" Visible="true" SourceType="all" AcceptValueMode="enter" Mandatory="false">
+      <type Display="input" Size="17" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+    </field>
+    <field Name="PuntoCaricoLbl" Sequence="30" Row="15" Column="1" Width="4" Height="1" Visible="true" SourceType="all" AcceptValueMode="enter" Mandatory="false">
+      <type Display="output" Size="4" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+    </field>
+    <field Name="PuntoCaricoVal" Sequence="31" Row="15" Column="5" Width="17" Height="1" Visible="true" SourceType="all" AcceptValueMode="enter" Mandatory="false">
+      <type Display="output" Size="17" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+    </field>
+    <field Name="TastiFunzioneUltimaLbl" Sequence="32" Row="16" Column="1" Width="21" Height="1" Visible="true" SourceType="all" AcceptValueMode="enter" Mandatory="false">
+      <type Display="output" Size="21" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+    </field>
+  </form>
+  <form Name="YElencoMissioni" Beep="none" Type="normal" Acknowledge="byFKey">
+    <field Name="TastoESC" Sequence="1" Row="1" Column="1" Width="12" Height="1" Visible="true" Value="CTL_X=Uscita">
+      <type Display="output" Size="12" Scale="0">com.thera.thermfw.type.StringType</type>
+    </field>
+    <field Name="TastoENTER" Sequence="2" Row="1" Column="16" Width="5" Height="1" Visible="true" Value="ENTER=OK" SourceType="all" AcceptValueMode="enter" Mandatory="false">
+            <type Display="output" Size="21" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+        </field>
+    <field Name="TitoloLbl" Sequence="2" Row="2" Column="1" Width="15" Height="1" Visible="true" SourceType="all" AcceptValueMode="enter" Mandatory="false">
+      <type Display="output" Size="15" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+    </field>
+    <field Name="TastoF8" Sequence="10" Row="15" Column="1" Width="8" Height="1" Visible="true" Value="F8=PG_SU" SourceType="all" AcceptValueMode="enter" Mandatory="false" RESId="paginaDestinazioneCambioUbic_TastoF8">
+        <type Display="output" Size="21" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+    </field>
+    <field Name="TastoF2" Sequence="11" Row="16" Column="1" Width="9" Height="1" Visible="true" Value="F2=PG_GIU" SourceType="all" AcceptValueMode="enter" Mandatory="false" RESId="paginaDestinazioneCambioUbic_TastoF2">
+        <type Display="output" Size="21" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+    </field>
+   <list Name="ElencoMissioni" Header="true" Check="multiple" Row="2" Column="1" Width="21" Height="13" Visible="true">
+            <item RESId="listaMissioniPers">ELENCO MISSIONI</item>
+        </list>
+        <hotkeys>
+            <key Name="F8" Function="PG_UP"/>
+            <key Name="F2" Function="PG_DOWN"/>
+        </hotkeys>
+  </form>
+  <form Name="YFormCambioPriorita" Beep="none" Type="normal" Acknowledge="byFKey">
+    <field Name="TastoESC" Sequence="1" Row="1" Column="1" Width="12" Height="1" Visible="true" Value="CTL_X=Uscita">
+      <type Display="output" Size="12" Scale="0">com.thera.thermfw.type.StringType</type>
+    </field>
+   <field Name="TastoF1" Sequence="2" Row="1" Column="16" Width="5" Height="1" Visible="true" Value="F1=OK">
+      <type Display="output" Size="5" Scale="0">com.thera.thermfw.type.StringType</type>
+    </field>
+    <field Name="TitoloLbl" Sequence="3" Row="4" Column="1" Width="15" Height="1" Visible="true" SourceType="all" AcceptValueMode="enter" Mandatory="false">
+      <type Display="output" Size="15" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+    </field>
+    <field Name="Titolo2Lbl" Sequence="4" Row="5" Column="1" Width="15" Height="1" Visible="true" SourceType="all" AcceptValueMode="enter" Mandatory="false">
+      <type Display="output" Size="15" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+    </field>
+     <field Name="UbicazioneLbl" Sequence="5" Row="9" Column="1" Width="15" Height="1" Visible="true" SourceType="all" AcceptValueMode="enter" Mandatory="false">
+      <type Display="output" Size="15" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+    </field>
+     <field Name="UbicazioneInput" Sequence="6" Row="10" Column="1" Width="15" Height="1" Visible="true" SourceType="all" AcceptValueMode="enter" Mandatory="false">
+      <type Display="input" Size="15" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+    </field>
+  </form>
+  <form Name="YFormListaLotti" Beep="none" Type="normal" Acknowledge="byFKey">
+    <field Name="TastoESC" Sequence="1" Row="1" Column="1" Width="12" Height="1" Visible="true" Value="CTL_X=Uscita">
+      <type Display="output" Size="12" Scale="0">com.thera.thermfw.type.StringType</type>
+    </field>
+    <field Name="TastoENTER" Sequence="2" Row="1" Column="16" Width="5" Height="1" Visible="true" Value="ENTER=OK" SourceType="all" AcceptValueMode="enter" Mandatory="false">
+            <type Display="output" Size="21" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+        </field>
+    <field Name="TitoloLbl" Sequence="3" Row="2" Column="1" Width="15" Height="1" Visible="true" SourceType="all" AcceptValueMode="enter" Mandatory="false">
+      <type Display="output" Size="15" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+      </field>
+      <field Name="TastoF8" Sequence="10" Row="15" Column="1" Width="8" Height="1" Visible="true" Value="F8=PG_SU" SourceType="all" AcceptValueMode="enter" Mandatory="false" RESId="paginaDestinazioneCambioUbic_TastoF8">
+        <type Display="output" Size="21" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+    </field>
+    <field Name="TastoF2" Sequence="11" Row="16" Column="1" Width="9" Height="1" Visible="true" Value="F2=PG_GIU" SourceType="all" AcceptValueMode="enter" Mandatory="false" RESId="paginaDestinazioneCambioUbic_TastoF2">
+        <type Display="output" Size="21" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+    </field>
+     <field Name="TastoF5" Sequence="12" Row="16" Column="9" Width="9" Height="1" Visible="true" Value="F5=Indietro" SourceType="all" AcceptValueMode="enter" Mandatory="false" RESId="paginaDestinazioneCambioUbic_TastoF5">
+        <type Display="output" Size="12" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+    </field>
+      <list Name="ElencoLotti" Header="true" Check="multiple" Row="3" Column="1" Width="21" Height="10" Visible="true">
+            <item RESId="listaLottiCambioPriorita">ELENCO LOTTI</item>
+        </list>
+        <hotkeys>
+            <key Name="F8" Function="PG_UP"/>
+            <key Name="F2" Function="PG_DOWN"/>
+        </hotkeys>
+  </form>
+   <form Name="YFormPaginaCancellaMissioni" Beep="none" Type="normal" Acknowledge="byFKey">
+    <field Name="TastoESC" Sequence="1" Row="1" Column="1" Width="12" Height="1" Visible="true" Value="CTL_X=Uscita">
+      <type Display="output" Size="12" Scale="0">com.thera.thermfw.type.StringType</type>
+    </field>
+    <field Name="TastoENTER" Sequence="2" Row="1" Column="16" Width="5" Height="1" Visible="true" Value="ENTER=OK" SourceType="all" AcceptValueMode="enter" Mandatory="false">
+            <type Display="output" Size="21" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+        </field>
+    <field Name="TitoloLbl" Sequence="3" Row="4" Column="1" Width="15" Height="1" Visible="true" SourceType="all" AcceptValueMode="enter" Mandatory="false">
+      <type Display="output" Size="15" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+    </field>
+     <field Name="Titolo2Lbl" Sequence="4" Row="5" Column="1" Width="15" Height="1" Visible="true" SourceType="all" AcceptValueMode="enter" Mandatory="false">
+      <type Display="output" Size="15" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+    </field>
+  </form>
+    <form Name="YPaginaGiacenze" Beep="alert" Type="normal" Acknowledge="lastField">
+        <field Name="ESCLbl" Sequence="1" Row="1" Column="1" Width="8" Height="1" Visible="true" Value="ENTER = Avanti" SourceType="all" AcceptValueMode="enter" Mandatory="false">
+            <type Display="output" Size="20" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+        </field>
+         <field Name="TastoF8" Sequence="10" Row="15" Column="1" Width="8" Height="1" Visible="true" Value="F8=PG_SU" SourceType="all" AcceptValueMode="enter" Mandatory="false" RESId="paginaDestinazioneCambioUbic_TastoF8">
+        <type Display="output" Size="21" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+    </field>
+    <field Name="TastoF2" Sequence="11" Row="16" Column="1" Width="9" Height="1" Visible="true" Value="F2=PG_GIU" SourceType="all" AcceptValueMode="enter" Mandatory="false" RESId="paginaDestinazioneCambioUbic_TastoF2">
+        <type Display="output" Size="21" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+    </field>
+   <list Name="MessaggioCommento" Header="true" Check="multiple" Row="2" Column="1" Width="21" Height="13" Visible="true">
+            <item RESId="messaggioCommento">Commento</item>
+        </list>
+        <hotkeys>
+            <key Name="F8" Function="PG_UP"/>
+            <key Name="F2" Function="PG_DOWN"/>
+        </hotkeys>
+    </form>
+  <form Name="YFormInserimentoBarcodeUbicazioneUds" Beep="none" Type="normal" Acknowledge="byFKey">
+    <field Name="TastoESC" Sequence="1" Row="1" Column="1" Width="12" Height="1" Visible="true" Value="CTL_X=Uscita">
+      <type Display="output" Size="12" Scale="0">com.thera.thermfw.type.StringType</type>
+    </field>
+         <field Name="TastoF1" Sequence="2" Row="1" Column="16" Width="5" Height="1" Visible="true" Value="F1=OK">
+      <type Display="output" Size="5" Scale="0">com.thera.thermfw.type.StringType</type>
+    </field>
+        
+    <field Name="TitoloLbl" Sequence="3" Row="4" Column="1" Width="15" Height="1" Visible="true" SourceType="all" AcceptValueMode="enter" Mandatory="false">
+      <type Display="output" Size="15" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+    </field>
+    <field Name="Titolo2Lbl" Sequence="4" Row="6" Column="1" Width="15" Height="1" Visible="true" SourceType="all" AcceptValueMode="enter" Mandatory="false">
+      <type Display="output" Size="15" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+    </field>
+     <field Name="UbicazioneLbl" Sequence="5" Row="9" Column="1" Width="15" Height="1" Visible="true" SourceType="all" AcceptValueMode="enter" Mandatory="false">
+      <type Display="output" Size="15" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+    </field>
+     <field Name="UbicazioneInput" Sequence="6" Row="10" Column="1" Width="24" Height="1" Visible="true" SourceType="all" AcceptValueMode="enter" Mandatory="false">
+      <type Display="input" Size="15" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+    </field>
+     <field Name="TastoF5" Sequence="12" Row="16" Column="9" Width="9" Height="1" Visible="true" Value="F5=Indietro" SourceType="all" AcceptValueMode="enter" Mandatory="false" RESId="paginaDestinazioneCambioUbic_TastoF5">
+        <type Display="output" Size="12" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+    </field>
+  </form>
+  
+  
+  
+  
+   <form Name="YFormElencoUdsInUbicazione" Beep="none" Type="normal" Acknowledge="byFKey">
+    <field Name="TastoESC" Sequence="1" Row="1" Column="1" Width="12" Height="1" Visible="true" Value="CTL_X=Uscita">
+      <type Display="output" Size="12" Scale="0">com.thera.thermfw.type.StringType</type>
+    </field>
+    <field Name="TitoloLbl" Sequence="3" Row="3" Column="1" Width="15" Height="1" Visible="true" SourceType="all" AcceptValueMode="enter" Mandatory="false">
+      <type Display="output" Size="15" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+      </field>
+      <field Name="TastoF8" Sequence="10" Row="15" Column="1" Width="8" Height="1" Visible="true" Value="F8=PG_SU" SourceType="all" AcceptValueMode="enter" Mandatory="false" RESId="paginaDestinazioneCambioUbic_TastoF8">
+        <type Display="output" Size="21" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+    </field>
+    <field Name="TastoF2" Sequence="11" Row="16" Column="1" Width="9" Height="1" Visible="true" Value="F2=PG_GIU" SourceType="all" AcceptValueMode="enter" Mandatory="false" RESId="paginaDestinazioneCambioUbic_TastoF2">
+        <type Display="output" Size="21" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+    </field>
+     <field Name="TastoF5" Sequence="12" Row="16" Column="9" Width="9" Height="1" Visible="true" Value="F5=Indietro" SourceType="all" AcceptValueMode="enter" Mandatory="false" RESId="paginaDestinazioneCambioUbic_TastoF5">
+        <type Display="output" Size="12" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+    </field>
+      <list Name="ElencoUds" Header="true" Check="multiple" Row="4" Column="1" Width="21" Height="10" Visible="true">
+            <item RESId="listaUdsInUbicazione">UDS Contenute</item>
+        </list>
+        <hotkeys>
+            <key Name="F8" Function="PG_UP"/>
+            <key Name="F2" Function="PG_DOWN"/>
+        </hotkeys>
+  </form>
+  
+   <form Name="YPaginaSaldiCompatibili" Beep="alert" Type="normal" Acknowledge="lastField">
+      <field Name="TastoESC" Sequence="1" Row="1" Column="1" Width="12" Height="1" Visible="true" Value="CTL_X=Uscita">
+      <type Display="output" Size="12" Scale="0">com.thera.thermfw.type.StringType</type>
+    </field>
+    <field Name="TastoENTER" Sequence="2" Row="1" Column="16" Width="5" Height="1" Visible="true" Value="ENTER=OK" SourceType="all" AcceptValueMode="enter" Mandatory="false">
+            <type Display="output" Size="21" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+        </field>
+         <field Name="TastoF8" Sequence="10" Row="15" Column="1" Width="8" Height="1" Visible="true" Value="F8=PG_SU" SourceType="all" AcceptValueMode="enter" Mandatory="false" RESId="paginaDestinazioneCambioUbic_TastoF8">
+        <type Display="output" Size="21" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+    </field>
+    <field Name="TastoF2" Sequence="11" Row="16" Column="1" Width="9" Height="1" Visible="true" Value="F2=PG_GIU" SourceType="all" AcceptValueMode="enter" Mandatory="false" RESId="paginaDestinazioneCambioUbic_TastoF2">
+        <type Display="output" Size="21" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+    </field>
+  <list Name="ElencoSaldiCompatibili" Header="true" Check="multiple" Row="3" Column="1" Width="21" Height="12" Visible="true">
+            <item RESId="ElencoSaldiCompatibili">Elenco Saldi</item>
+        </list>
+        <hotkeys>
+            <key Name="F8" Function="PG_UP"/>
+            <key Name="F2" Function="PG_DOWN"/>
+        </hotkeys>
+    </form>
+    
+     <form Name="YFormPaginaPesoVariabile" Beep="none" Type="normal" Acknowledge="byFKey">
+    <field Name="TastoESC" Sequence="1" Row="1" Column="1" Width="12" Height="1" Visible="true" Value="CTL_X=Uscita">
+      <type Display="output" Size="12" Scale="0">com.thera.thermfw.type.StringType</type>
+    </field>
+         <field Name="TastoF1" Sequence="2" Row="1" Column="16" Width="5" Height="1" Visible="true" Value="F1=OK">
+      <type Display="output" Size="5" Scale="0">com.thera.thermfw.type.StringType</type>
+    </field>
+        
+    <field Name="Rilevazione" Sequence="3" Row="3" Column="1" Width="15" Height="1" Visible="true" SourceType="all" AcceptValueMode="enter" Mandatory="false">
+      <type Display="output" Size="15" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+    </field>
+    <field Name="UmVariabile" Sequence="4" Row="4" Column="1" Width="15" Height="1" Visible="true" SourceType="all" AcceptValueMode="enter" Mandatory="false">
+      <type Display="output" Size="15" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+    </field>
+     <field Name="ValoreInput" Sequence="6" Row="6" Column="1" Width="24" Height="1" Visible="true" SourceType="all" AcceptValueMode="enter" Mandatory="false">
+      <type Display="input" Size="15" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+    </field>
+      <field Name="QtaTeorica" Sequence="7" Row="8" Column="1" Width="15" Height="1" Visible="true" SourceType="all" AcceptValueMode="enter" Mandatory="false">
+      <type Display="output" Size="15" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+    </field>
+  </form>
+  
+  <form Name="YPagineSelezioneComCont" Beep="none" Type="normal" Acknowledge="byFKey">
+    <field Name="TastoESC" Sequence="1" Row="1" Column="1" Width="12" Height="1" Visible="true" Value="CTL_X=Uscita">
+      <type Display="output" Size="12" Scale="0">com.thera.thermfw.type.StringType</type>
+    </field>
+    <field Name="TastoENTER" Sequence="2" Row="1" Column="16" Width="5" Height="1" Visible="true" Value="ENTER=OK" SourceType="all" AcceptValueMode="enter" Mandatory="false">
+            <type Display="output" Size="21" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+        </field>
+    <field Name="TitoloLbl" Sequence="3" Row="2" Column="1" Width="15" Height="1" Visible="true" SourceType="all" AcceptValueMode="enter" Mandatory="false">
+      <type Display="output" Size="15" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+      </field>
+      <field Name="TastoF8" Sequence="10" Row="15" Column="1" Width="8" Height="1" Visible="true" Value="F8=PG_SU" SourceType="all" AcceptValueMode="enter" Mandatory="false" RESId="paginaDestinazioneCambioUbic_TastoF8">
+        <type Display="output" Size="21" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+    </field>
+    <field Name="TastoF2" Sequence="11" Row="16" Column="1" Width="9" Height="1" Visible="true" Value="F2=PG_GIU" SourceType="all" AcceptValueMode="enter" Mandatory="false" RESId="paginaDestinazioneCambioUbic_TastoF2">
+        <type Display="output" Size="21" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+    </field>
+     <field Name="TastoF5" Sequence="12" Row="16" Column="9" Width="9" Height="1" Visible="true" Value="F5=Indietro" SourceType="all" AcceptValueMode="enter" Mandatory="false" RESId="paginaDestinazioneCambioUbic_TastoF5">
+        <type Display="output" Size="12" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+    </field>
+      <list Name="ElencoScelte" Header="true" Check="multiple" Row="3" Column="1" Width="21" Height="10" Visible="true">
+            <item RESId="listaScelteComCont">OPZIONI</item>
+        </list>
+        <hotkeys>
+            <key Name="F8" Function="PG_UP"/>
+            <key Name="F2" Function="PG_DOWN"/>
+        </hotkeys>
+  </form>
+  
+    
+  <form Name="YPaginaConteggio" Beep="none" Type="normal" Acknowledge="byFKey">
+    <field Name="TastoESC" Sequence="1" Row="16" Column="1" Width="12" Height="1" Visible="true" Value="CTL_X=Uscita">
+      <type Display="output" Size="12" Scale="0">com.thera.thermfw.type.StringType</type>
+    </field>
+    <field Name="TitoloLbl" Sequence="3" Row="2" Column="1" Width="15" Height="1" Visible="true" SourceType="all" AcceptValueMode="enter" Mandatory="false">
+      <type Display="output" Size="15" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+      </field>
+      <field Name="LblArticolo" Sequence="3" Row="3" Column="1" Width="21" Height="1" Visible="true" SourceType="all" AcceptValueMode="enter" Mandatory="false">
+      <type Display="output" Size="15" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+      </field>
+      <field Name="LblDescrizione" Sequence="4" Row="4" Column="1" Width="21" Height="1" Visible="true" SourceType="all" AcceptValueMode="enter" Mandatory="false">
+      <type Display="output" Size="15" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+      </field>
+       <field Name="LblQtaPrelevata" Sequence="5" Row="5" Column="1" Width="21" Height="1" Visible="true" SourceType="all" AcceptValueMode="enter" Mandatory="false">
+      <type Display="output" Size="15" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+      </field>
+      <field Name="TastoF8" Sequence="10" Row="15" Column="1" Width="8" Height="1" Visible="true" Value="F8=PG_SU" SourceType="all" AcceptValueMode="enter" Mandatory="false" RESId="paginaDestinazioneCambioUbic_TastoF8">
+        <type Display="output" Size="21" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+    </field>
+    <field Name="TastoF2" Sequence="11" Row="15" Column="8" Width="9" Height="1" Visible="true" Value="F2=PG_GIU" SourceType="all" AcceptValueMode="enter" Mandatory="false" RESId="paginaDestinazioneCambioUbic_TastoF2">
+        <type Display="output" Size="21" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+    </field>
+      <list Name="ElencoUds" Header="true" Check="multiple" Row="7" Column="1" Width="21" Height="7" Visible="true">
+            <item RESId="listaUdsEstratte">OPZIONI</item>
+        </list>
+        <hotkeys>
+            <key Name="F8" Function="PG_UP"/>
+            <key Name="F2" Function="PG_DOWN"/>
+        </hotkeys>
+  </form>
+  
+   <form Name="YPaginaMovimento" Acknowledge="byFKey" Beep="none" Type="normal">
+        <field Name="TastoESC" Sequence="1" Row="1" Column="1" Width="8" Height="1" Visible="true" Value="CTL_X=Esci" SourceType="all" AcceptValueMode="enter" Mandatory="false" RESId="paginaMovimento_TastoESC">
+            <type Display="output" Size="21" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+        </field>
+        <field Name="TastoF1" Sequence="2" Row="1" Column="16" Width="5" Height="1" Visible="true" Value="F1=OK" SourceType="all" AcceptValueMode="enter" Mandatory="false" RESId="paginaMovimento_TastoF1">
+            <type Display="output" Size="21" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+        </field>
+        <field Name="Intestazione" Sequence="3" Row="2" Column="1" Width="16" Height="1" Visible="true" Value="&gt;&gt;&gt;&gt; MOVIMENTO" SourceType="all" AcceptValueMode="enter" Mandatory="false" RESId="paginaMovimento_Intestazione">
+            <type Display="output" Size="21" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+        </field>
+        <field Name="ArticoloMatricolato" Sequence="3" Row="3" Column="1" Width="21" Height="1" Visible="true" Value="ARTICOLO MATRICOLATO" SourceType="all" AcceptValueMode="enter" Mandatory="false">
+            <type Display="output" Size="21" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+        </field>
+        <field Name="LblArticolo" Sequence="4" Row="4" Column="1" Width="20" Height="1" Visible="true" SourceType="all" AcceptValueMode="enter" Mandatory="false">
+            <type Display="output" Size="21" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+        </field>
+        <field Name="FieldArticolo" Sequence="5" Row="5" Column="2" Width="50" Height="1" Visible="true" SourceType="all" AcceptValueMode="enter" Mandatory="false">
+            <type Display="output" Size="50" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+        </field>
+        <field Name="LblLotto" Sequence="4" Row="6" Column="1" Width="20" Height="1" Visible="true" SourceType="all" AcceptValueMode="enter" Mandatory="false">
+            <type Display="output" Size="21" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+        </field>
+        <field Name="LblColata" Sequence="23" Row="7" Column="1" Width="20" Height="1" Visible="true" SourceType="all" AcceptValueMode="enter" Mandatory="false">
+            <type Display="output" Size="21" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+        </field>
+        <field Name="LblUbicScarico" Sequence="6" Row="8" Column="1" Width="11" Height="1" Visible="true" SourceType="all" AcceptValueMode="enter" Mandatory="false">
+            <type Display="output" Size="21" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+        </field>
+        <field Name="LblQtaDisp" Sequence="8" Row="9" Column="1" Width="9" Height="1" Visible="true" SourceType="all" AcceptValueMode="enter" Mandatory="false">
+            <type Display="output" Size="21" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+        </field>
+        <field Name="LblDataScad" Sequence="10" Row="10" Column="1" Width="9" Height="1" Visible="false" Value="Scadenza:" SourceType="all" AcceptValueMode="enter" Mandatory="false" RESId="paginaMovimento_LblDataScad">
+            <type Display="output" Size="21" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+        </field>
+        <field Name="FieldDataScad" Row="9" Column="10" Width="9" Height="1" Visible="false" Sequence="11" Mandatory="false" SourceType="all" AcceptValueMode="enter">
+            <type Display="input" Size="21" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+        </field>
+        <field Name="LblQta" Sequence="12" Row="11" Column="1" Width="9" Height="1" Visible="true" Value="Quantita:" SourceType="all" AcceptValueMode="enter" Mandatory="false" RESId="paginaMovimento_LblQta">
+            <type Display="output" Size="21" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+        </field>
+        <field Name="FieldQta" Row="10" Column="12" Width="10" Height="1" Visible="true" Sequence="13" Mandatory="true" SourceType="all" AcceptValueMode="enter">
+            <type Display="input" Size="21" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+        </field>
+        <field Name="LblUdm" Sequence="14" Row="12" Column="1" Width="5" Height="1" Visible="false" SourceType="all" AcceptValueMode="enter" Mandatory="false">
+            <type Display="output" Size="21" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+        </field>
+        <field Name="FieldUdm" Sequence="15" Row="12" Column="7" Width="14" Height="1" Visible="false" SourceType="all" AcceptValueMode="enter" Mandatory="false">
+            <type Display="input" Size="21" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+        </field>
+        <field Name="LblUdc" Sequence="16" Row="13" Column="1" Width="5" Height="1" Visible="true" SourceType="all" AcceptValueMode="enter" Mandatory="false">
+            <type Display="output" Size="21" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+        </field>
+        <field Name="FieldUdc" Sequence="17" Row="13" Column="7" Width="34" Height="1" Visible="true" SourceType="all" AcceptValueMode="enter" Mandatory="false">
+            <type Display="input" Size="21" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+        </field>
+        <field Name="LblUbicSuggerita" Sequence="18" Row="14" Column="1" Width="21" Height="1" Visible="true" SourceType="all" AcceptValueMode="enter" Mandatory="false">
+            <type Display="output" Size="21" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+        </field>
+        <field Name="LblUbicCarico" Sequence="19" Row="15" Column="1" Width="5" Height="1" Visible="true" SourceType="all" AcceptValueMode="enter" Mandatory="false">
+            <type Display="output" Size="21" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+        </field>
+        <field Name="FieldUbicCarico" Sequence="20" Row="15" Column="5" Width="20" Height="1" Visible="true" SourceType="all" AcceptValueMode="enter" Mandatory="false">
+            <type Display="input" Size="21" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+        </field>
+        <field Name="TastoF9" Sequence="21" Row="17" Column="1" Width="9" Height="1" Visible="true" SourceType="all" AcceptValueMode="enter" Mandatory="false">
+            <type Display="output" Size="21" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+        </field>
+        <field Name="TastoF5" Sequence="22" Row="17" Column="11" Width="11" Height="1" Visible="true" Value="F5=Indietro" SourceType="all" AcceptValueMode="enter" Mandatory="false" RESId="paginaMovimento_TastoF5">
+            <type Display="output" Size="21" Scale="0" Justify="left">com.thera.thermfw.type.StringType</type>
+        </field>
+    </form>
+</LogisLogin>

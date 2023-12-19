@@ -1,0 +1,54 @@
+<!ENTITY versione "1.0">
+<!ELEMENT LogisLogin (form+)>
+<!ELEMENT form (field*, list*, printer*, hotkeys*)>
+<!ATTLIST form
+      Name CDATA #REQUIRED
+      Beep (alert|warning|hello|none) "none"
+      Type (normal|popup) "normal"
+      Acknowledge (byFKey|lastField) "lastField"
+>
+<!ELEMENT field (type)>
+<!ATTLIST field
+      Name CDATA #REQUIRED
+      SourceType (keyboard|all|scanner) "all"
+      AcceptValueMode (auto|enter) "enter"
+      Mandatory (true|false) "false"
+      Value CDATA #IMPLIED
+      Visible (true|false) "true"
+      Row CDATA #REQUIRED
+      Column CDATA #REQUIRED
+      Height CDATA #REQUIRED
+      Width CDATA #REQUIRED
+      Sequence CDATA #REQUIRED
+>
+<!ELEMENT type (#PCDATA)>
+<!ATTLIST type 
+      Size CDATA #REQUIRED
+      Scale CDATA #REQUIRED
+      Display (input|output) "output"
+      Justify (left|right) "left"
+>
+<!ELEMENT list (item+)>
+<!ATTLIST list
+      Name CDATA #REQUIRED
+      Header (true|false) "true"
+      Visible (true|false) "true"
+      Row CDATA #REQUIRED
+      Column CDATA #REQUIRED
+      Height CDATA #IMPLIED
+      Width CDATA #REQUIRED
+      Check (none|single|multiple) "none"
+>
+<!ELEMENT item (#PCDATA)>
+<!ELEMENT printer (printerline+)>
+<!ATTLIST printer
+      Name CDATA #REQUIRED
+      LineSeparator (CR|LF|CRLF|LFCR) #REQUIRED
+>
+<!ELEMENT printerline (#PCDATA)>
+<!ELEMENT hotkeys (key+)>
+<!ELEMENT key EMPTY>
+<!ATTLIST key
+      Name CDATA #REQUIRED
+      Function (PG_UP|PG_DOWN|DOWN|UP|ACK_FORM|NONE) #REQUIRED
+>
