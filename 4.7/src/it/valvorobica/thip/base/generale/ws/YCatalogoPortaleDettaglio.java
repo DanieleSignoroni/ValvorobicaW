@@ -57,7 +57,7 @@ public class YCatalogoPortaleDettaglio extends GenRequestJSON {
 		JsonArray headers = new JsonArray();
 		YUserPortalSession user = (YUserPortalSession) getRequest().getSession().getAttribute("YUserPortal");
 		this.user = user;
-		this.user.dettagli_caricati.clear();
+		// this.user.dettagli_caricati.clear();
 		if (!user.dettagli_caricati.containsKey(this.getIdVista().trim())) { // far si che la vista sia il fullPath e
 																				// replace
 																				// ("/",KeyHelper.KEY_SERPARATOR) in
@@ -73,7 +73,7 @@ public class YCatalogoPortaleDettaglio extends GenRequestJSON {
 				Setting setting = (Setting) Setting.elementWithKey(Setting.class, "4738", PersistentObject.NO_LOCK);
 				if (setting != null) {
 					DOList doList = (DOList) Factory.createObject(DOList.class);
-					doList.setClassADCollection(getClassADCollection(null));
+					doList.setClassADCollection(getClassADCollection());
 					for (int i = 0; i < criteria.size(); i++) {
 						Criterion criterion = (Criterion) criteria.get(i);
 						if (!isEmptyCriterion(criterion))
@@ -243,7 +243,7 @@ public class YCatalogoPortaleDettaglio extends GenRequestJSON {
 
 	@SuppressWarnings("rawtypes")
 	public ClassAD getClassADWithColumnName(ServletEnvironment se, String colmunName) {
-		Hashtable allAttributes = getClassADCollection(se).getAllAttributes();
+		Hashtable allAttributes = getClassADCollection().getAllAttributes();
 		Enumeration attributesEnum = allAttributes.elements();
 
 		ClassAD target = null;
@@ -280,7 +280,7 @@ public class YCatalogoPortaleDettaglio extends GenRequestJSON {
 		return crit;
 	}
 
-	protected ClassADCollection getClassADCollection(ServletEnvironment se) {
+	protected ClassADCollection getClassADCollection() {
 		ClassADCollection objectCad = null;
 		try {
 			objectCad = ClassADCollectionManager.collectionWithName("Articolo");

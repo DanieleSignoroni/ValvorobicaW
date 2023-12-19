@@ -1,0 +1,12 @@
+ERR-DFT 2023-12-19 10:15:34.659 [ADMIN_001] <Client - /127.0.0.1:55448>: com.thera.thermfw.security.WrongPasswordException: La password specificata non è corretta
+ERR-	at com.thera.thermfw.security.Security.serviceOpenSession(Security.java:417)
+ERR-	at com.thera.thermfw.security.Security.openSession(Security.java:225)
+ERR-	at com.thera.thermfw.security.Security.openSession(Security.java:196)
+ERR-	at it.thera.thip.logis.rf.LogisLogin.conDB(LogisLogin.java:569)
+ERR-	at it.thera.thip.logis.rf.ThipLogin.start(ThipLogin.java:152)
+ERR-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+ERR-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+ERR-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+ERR-	at java.lang.reflect.Method.invoke(Method.java:498)
+ERR-	at com.thera.thermfw.rf.driver.DriverVT100.startApplication(DriverVT100.java:1515)
+ERR-	at com.thera.thermfw.rf.driver.PortManager$Client.run(PortManager.java:763)
