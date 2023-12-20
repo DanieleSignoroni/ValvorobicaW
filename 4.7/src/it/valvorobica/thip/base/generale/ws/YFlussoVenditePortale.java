@@ -33,13 +33,14 @@ import it.valvorobica.thip.vendite.ordineVE.YOrdineVendita;
 import it.valvorobica.thip.vendite.ordineVE.YOrdineVenditaRigaPrm;
 
 /**
- * <h1>Softre Solutions</h1> <br>
- * <h2>ID WS = 'YFLVP'</h2>
+ * <h1>Softre Solutions</h1>
+ * <h2>ID WS = 'YFLVP'</h2> <br>
+ * </br>
  * 
  * @version 1.0
  * @author Daniele Signoroni 10/11/2023 <br>
  *         <br>
- *         <b></b>
+ *         <b>71360 DSSOF3 20/12/2023</b>
  *         <p>
  *         Replica del flusso vendite nel portale.<br>
  *         Per ora replicato solo il flusso Ordine Vendita --> DDT.

@@ -80,12 +80,12 @@ try {
 	href="/<%=YUserPortalSession.WEB_APP_PATH%>/it/valvorobica/thip/base/portal/css/modal_flusso_vendite.css?v=1.00"
 	rel="stylesheet">
 <link
-	href="/<%=webAppPath%>/it/valvorobica/thip/assets/DataTables/datatables.css?v=1.0"
+	href="/<%=webAppPath%>/it/valvorobica/thip/assets/DataTables/datatables.css?v=1.00"
 	rel="stylesheet">
 	<link href="/<%=webAppPath%>/it/valvorobica/thip/assets/DataTables/Select/css/select.dataTables.css" rel="stylesheet">
 <link href="/<%=webAppPath%>/it/valvorobica/thip/assets/DataTables/Buttons/css/buttons.dataTables.css" rel="stylesheet">
 <script
-	src="/<%=webAppPath%>/it/valvorobica/thip/assets/DataTables/datatables.js"></script>
+	src="/<%=webAppPath%>/it/valvorobica/thip/assets/DataTables/datatables.js?v=1.00"></script>
 <script
 	src="/<%=webAppPath%>/it/valvorobica/thip/assets/DataTables/Select/js/dataTables.select.js"></script>
 <script
@@ -186,7 +186,7 @@ try {
 				        				$('#modalWarningClick',parent.document)[0].click();
 				                	}else if (table.rows('.selected').data().length < 1){
 				                		table.rows('.selected').deselect();
-				                		var txt = "Selezionare almeno un ordine";
+				                		var txt = "Selezionare un ordine per vedere i documenti di trasporto collegati";
 				        				$('#txtWarning',parent.document)[0].innerHTML = txt;
 				        				$('#modalWarningClick',parent.document)[0].click();
 				                	}else{
@@ -240,6 +240,7 @@ try {
 					data : {},
 					success : function(data) {
 						if(data.keysDDT != null){
+							$('#listaDDT').html('');
 							let listDDT = data.keysDDT;
 							let ul = $('#listaDDT');
 							let markup = '';
