@@ -1,0 +1,4 @@
+<BR>Il seguente entità <B>(YClassAdImpMisu)</B> è stato salvato
+<BR>Il seguente entità <B>(YHdrImpMisure)</B> è stato salvato
+<BR>Il voce di menu <B>null/YHdrImpMisure</B> è stato salvato per l'uttente <B>ADMIN_001</B>
+<BR><B>Generazione entità e voci di menù è completata con successo</B><BR>

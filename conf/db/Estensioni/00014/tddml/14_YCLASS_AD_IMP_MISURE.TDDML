@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE TDDML SYSTEM "../../../TDDML.dtd">
+<TDDML>
+  <!-- YCLASS_AD_IMP_MISURE (YCLASS_): Descrittore attributo importazione; -->
+  <CreateTable schema="THIPPERS" name="YCLASS_AD_IMP_MISURE" shortname="YCLASS_">
+    <Column name="ID_AZIENDA" shortname="ID_AZIEND0" type="char" length="3" nullable="no"/>
+    <Column name="ID_FORNITORE" shortname="ID_FORNIT0" type="char" length="8" nullable="no"/>
+    <Column name="CLASS_HDR" shortname="CLASS_HD0" type="char" length="25" nullable="no"/>
+    <Column name="STATO" shortname="STAT0" type="char" length="1" nullable="no"/>
+    <Column name="R_UTENTE_CRZ" shortname="R_UTENTE_0" type="char" length="20" nullable="yes"/>
+    <Column name="TIMESTAMP_CRZ" shortname="TIMESTAMP0" type="timestamp" nullable="no" default="CURRENT TIMESTAMP"/>
+    <Column name="R_UTENTE_AGG" shortname="R_UTENTE_1" type="char" length="20" nullable="yes"/>
+    <Column name="TIMESTAMP_AGG" shortname="TIMESTAMP1" type="timestamp" nullable="no" default="CURRENT TIMESTAMP"/>
+    <Column name="TITOLO_COLONNA" shortname="TITOLO_COL" type="varchar" length="50" nullable="no"/>
+    <Column name="VALORE_DEFAULT" shortname="VALORE_DEF" type="varchar" length="100" nullable="yes"/>
+    <Column name="ESCLUDI" shortname="ESCLUDI" type="char" length="1" nullable="no" default="N"/>
+    <Column name="CLASS_AD" shortname="CLASS_AD" type="char" length="25" nullable="no"/>
+  </CreateTable>
+  <CreateIndex schema="THIPPERS" name="YCLASS_AD_IMP__I01" tabschema="THIPPERS" tabname="YCLASS_AD_IMP_MISURE" shortname="YCLASS_I01" unique="yes">
+    <IndexCol name="ID_AZIENDA" order="Asc"/>
+    <IndexCol name="ID_FORNITORE" order="Asc"/>
+    <IndexCol name="CLASS_HDR" order="Asc"/>
+    <IndexCol name="TITOLO_COLONNA" order="Asc"/>
+  </CreateIndex>
+  <AlterTable schema="THIPPERS" name="YCLASS_AD_IMP_MISURE">
+    <AddPrimaryKey>
+      <PrimaryKey>
+        <ColumnRef name="ID_AZIENDA"/>
+        <ColumnRef name="ID_FORNITORE"/>
+        <ColumnRef name="CLASS_HDR"/>
+        <ColumnRef name="TITOLO_COLONNA"/>
+      </PrimaryKey>
+    </AddPrimaryKey>
+  </AlterTable>
+  <Comment>
+    <CommentTable schema="THIPPERS" name="YCLASS_AD_IMP_MISURE" text="Descrittore attributo importazione">
+      <CommentColumn name="ID_AZIENDA" text="Azienda"/>
+      <CommentColumn name="ID_FORNITORE" text="Codice fornitore"/>
+      <CommentColumn name="CLASS_HDR" text="Descrittore di classe"/>
+      <CommentColumn name="STATO" text="Stato"/>
+      <CommentColumn name="R_UTENTE_CRZ" text="Utente creazione"/>
+      <CommentColumn name="TIMESTAMP_CRZ" text="Timestamp creazione"/>
+      <CommentColumn name="R_UTENTE_AGG" text="Utente ultima modifica"/>
+      <CommentColumn name="TIMESTAMP_AGG" text="Timestamp ultima modifica"/>
+      <CommentColumn name="TITOLO_COLONNA" text="Titolo colonna"/>
+      <CommentColumn name="VALORE_DEFAULT" text="Valore default"/>
+      <CommentColumn name="ESCLUDI" text="Escludi"/>
+      <CommentColumn name="CLASS_AD" text="Attributo"/>
+    </CommentTable>
+    <CommentIndex schema="THIPPERS" name="YCLASS_AD_IMP__I01" text="Primary Key"/>
+  </Comment>
+  <Grant schema="THIPPERS" name="YCLASS_AD_IMP_MISURE"/>
+</TDDML>

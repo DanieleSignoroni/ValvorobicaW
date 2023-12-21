@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE TDDML SYSTEM "../../../TDDML.dtd">
+<TDDML>
+  <DropTable name="YHDR_IMP_MISURE" schema="THIPPERS">
+    <Continue/>
+  </DropTable>
+  <DropTable name="YCLASS_AD_IMP_MISURE" schema="THIPPERS">
+    <Continue/>
+  </DropTable>
+</TDDML>

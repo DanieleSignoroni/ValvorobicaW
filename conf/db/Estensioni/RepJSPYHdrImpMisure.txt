@@ -1,0 +1,4 @@
+<B>2023-12-21 11:26:54</B>
+<BR>Il file <B>YClassAdImpMisure.jsp</B> è stato generato correttamente nel cartela <B>W:\PthDev\Projects\Panthera\Valvorobica\conf\db\Estensioni\00014\websrc\it\valvorobica\thip\base\importazione</B><BR>Il file <B>YClassAdImpMisure.jsp</B> è stato copiato nel classpath
+<BR>Il file <B>YHdrImpMisure.jsp</B> è stato generato correttamente nel cartela <B>W:\PthDev\Projects\Panthera\Valvorobica\conf\db\Estensioni\00014\websrc\it\valvorobica\thip\base\importazione</B><BR>Il file <B>YHdrImpMisure.jsp</B> è stato copiato nel classpath
+<BR><B>Generazione JSP è completata con successo</B><BR>

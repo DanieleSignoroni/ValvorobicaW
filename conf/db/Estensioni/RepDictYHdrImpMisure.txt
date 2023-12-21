@@ -1,0 +1,10 @@
+<B>2023-12-21 11:58:58</B>
+<BR>Il dizionario <B>YCLASS_AD_IMP_MISURE</B> è stato cancellato
+<BR>Il dizionario <B>YHDR_IMP_MISURE</B> è stato cancellato
+<BR>Il file <B>W:\PthDev\Projects\Panthera\Valvorobica\conf\db\Estensioni\00014\tddml\14_DROP_YHDR_IMP_MISURE.TDDML</B> e' stato generato correttamente.
+<BR>Il dizionario <B>YHDR_IMP_MISURE</B> è stato creato
+<BR>Il dizionario <B>YCLASS_AD_IMP_MISURE</B> è stato creato
+<BR>Il file <B>W:\PthDev\Projects\Panthera\Valvorobica\conf\db\Estensioni\00014\tddml\14_YCLASS_AD_IMP_MISURE.TDDML</B> e' stato generato correttamente.
+<BR>Il file <B>W:\PthDev\Projects\Panthera\Valvorobica\conf\db\Estensioni\00014\tddml\14_YHDR_IMP_MISURE.TDDML</B> e' stato generato correttamente.
+<BR>Il file <B>W:\PthDev\Projects\Panthera\Valvorobica\conf\db\Estensioni\00014\tddml\14_CONSTRAINT.TDDML</B> e' stato generato correttamente.
+<BR><B>La generazione tabella è completata con successo</B><BR>

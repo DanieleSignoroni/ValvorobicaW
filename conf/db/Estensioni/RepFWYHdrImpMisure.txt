@@ -1,0 +1,5 @@
+<B>2023-12-21 11:59:03</B>
+<B>2023-12-21 11:59:03</B>
+<BR>Il descrittore di classe <B>YClassAdImpMisure</B> è stato generato correttamente
+<BR>Il descrittore di classe <B>YHdrImpMisure</B> è stato generato correttamente
+<BR><B>La generazione descrittori di classe è completata con successo</B><BR>

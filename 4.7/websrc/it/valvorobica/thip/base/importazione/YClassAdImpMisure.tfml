@@ -1,0 +1,16 @@
+<tfml>
+  <generator type="internalRowForm"/>
+  <form classHdr="YClassAdImpMisure"
+    name="YClassAdImpMisureForm"
+    locktype="nolock"
+    errorList="no">
+    <textinput name="IdAzienda" classAD="IdAzienda"/>
+    <textinput name="IdFornitore" classAD="IdFornitore"/>
+    <textinput name="ClassHdr" classAD="ClassHdr"/>
+        <textinput name="TitoloColonna" classAD="TitoloColonna"/>
+        <multisearchform name="ClassAD" classRD="ClassAD"/>
+        <textarea name="ValoreDefault" classAD="ValoreDefault"/>
+        <checkbox classAD="Escludi" name="Escludi"/>
+      </form>
+</tfml>
+
