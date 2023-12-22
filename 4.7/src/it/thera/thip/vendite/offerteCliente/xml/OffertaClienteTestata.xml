@@ -1,0 +1,688 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+
+<customization>
+	<!-- Scheda Generale -->
+	<formcustomization customizePosition="END_TAB" customizeName="A" tabbedName="tabbedTestataRidotta" tabName="tabGenerale">
+		<table cellspacing="0" cellpadding="0" style="display:none">
+			<!-- Campi Nascosti -->
+			<tr><td>
+				<textinput classHdr="OffertaCliente" classAD="IdAzienda" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OffertaCliente" classAD="AnnoOfferta" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OffertaCliente" classAD="NumeroOfferta" typified="no"/>
+			</td></tr>
+
+			<tr><td>
+				<textinput classHdr="OffertaCliente" classAD="ClienteIndirizzo" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OffertaCliente" classAD="ClienteLocalita" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OffertaCliente" classAD="ClienteCAP" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OffertaCliente" classAD="ClienteNazione" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OffertaCliente" classAD="ClienteProvincia" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OffertaCliente" classAD="IdZona" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OffertaCliente" classAD="IdMicroareaClienti" typified="no"/>
+			</td></tr>
+
+			<!-- Scheda Generale (campi nascosti) -->
+			<tr><td>
+				<textinput classHdr="OffertaCliente" classAD="ClienteCodFisc" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OffertaCliente" classAD="ClientePartitaIVA" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OffertaCliente" classAD="IdDivisione" typified="no"/>
+			</td></tr>
+
+			<!-- Scheda Destinazione (campi nascosti) -->
+			<tr><td>
+				<textinput classHdr="OffertaCliente" classAD="IdResponsabileVendite" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OffertaCliente" classAD="IdAgente" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OffertaCliente" classAD="ProvvigioneAgente" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OffertaCliente" classAD="IdSubagente" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OffertaCliente" classAD="ProvvigioneSubagente" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OffertaCliente" classAD="TipoLiquidazionePrv" typified="no"/>
+			</td></tr>
+
+			<!-- Scheda Cond. Vendita 2 (campi nascosti) -->
+		    <tr><td>
+		    	<textinput classHdr="OffertaCliente" classAD="IdValuta" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OffertaCliente" classAD="Cambio" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OffertaCliente" classAD="AssoggettamentoIVA" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OffertaCliente" classAD="IdSpesa1" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OffertaCliente" classAD="IdSpesa2" typified="no"/>
+			</td></tr>
+		    <tr><td>
+				<textinput classHdr="OffertaCliente" classAD="IdModalitaPagamento" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OffertaCliente" classAD="DataInizioPagamento" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OffertaCliente" classAD="IdLingua" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OffertaCliente" classAD="IdentificativoBanca.CodificaSIA" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OffertaCliente" classAD="IdentificativoBanca.IdABI" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OffertaCliente" classAD="IdentificativoBanca.IdAzienda" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OffertaCliente" classAD="IdentificativoBanca.IdBancaNonABI" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OffertaCliente" classAD="IdentificativoBanca.IdCAB" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OffertaCliente" classAD="ContoCorrente" typified="no"/>
+			</td></tr>
+			<!-- Fix 28455 inizio-->
+			<tr><td>
+				<textinput classHdr="OffertaCliente" classAD="CodiceIBAN" typified="no"/>
+			</td></tr>
+			<!-- Fix 28455 Fine-->
+			<!-- Scheda Cond. Evasione (campi nascosti) -->
+		   	<tr><td>
+				<textinput classHdr="OffertaCliente" classAD="DataConsegnaRichiesta" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OffertaCliente" classAD="SettConsegnaRichiesta" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OffertaCliente" classAD="DataConsegnaConfermata" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OffertaCliente" classAD="SettConsegnaConfermata" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OffertaCliente" classAD="IdMagazzino" typified="no"/>
+			</td></tr>
+
+			<tr><td>
+				<textinput classHdr="OffertaCliente" classAD="IdCommessa" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OffertaCliente" classAD="IdCentroCosto" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OffertaCliente" classAD="IdFornitore" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OffertaCliente" classAD="TipoEvasioneOrdine" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OffertaCliente" classAD="PrcPerditaResiduo" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OffertaCliente" classAD="Priorita" typified="no"/>
+			</td></tr>
+<!-- Fix 29847 -->
+			<tr><td>
+				<textinput classHdr="OffertaCliente" classAD="RaggruppamentoOrdBolla" typified="no"/>
+			</td></tr>
+<!--Fix	29847 -->
+
+			<!-- Fix 33428 inizio -->
+			<tr>
+				<td>
+					<textinput classHdr="OffertaCliente" classAD="IdAnnoRichServ" typified="no"/>
+				</td>
+				<td>
+					<textinput classHdr="OffertaCliente" classAD="IdNumeroRichServ" typified="no"/>
+				</td>
+				<td>
+					<textinput classHdr="OffertaCliente" classAD="IdBeneServ" typified="no"/>
+				</td>
+				<td>
+					<textinput classHdr="OffertaCliente" classAD="RichServRichiedente" typified="no"/>
+				</td>
+			</tr>
+			<!-- Fix 33428 fine -->
+
+
+			<!-- Scheda Spedizione (campi nascosti) -->
+			<tr><td>
+				<textinput classHdr="OffertaCliente" classAD="IdCadenzaConsegna" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OffertaCliente" classAD="IdGiroConsegna" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OffertaCliente" classAD="IdModalitaSpedizione" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OffertaCliente" classAD="DescrModalitaSpedizione" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OffertaCliente" classAD="IdModalitaConsegna" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OffertaCliente" classAD="DescrModalitaConsegna" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OffertaCliente" classAD="IdAspettoEsteriore" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OffertaCliente" classAD="DescrAspettoEsteriore" typified="no"/>
+			</td></tr>
+
+			<tr><td>
+				<textinput classHdr="OffertaCliente" classAD="IdVettore1" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textarea classHdr="OffertaCliente" classAD="DescrVettore1" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OffertaCliente" classAD="IdVettore2" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textarea classHdr="OffertaCliente" classAD="DescrVettore2" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OffertaCliente" classAD="IdVettore3" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textarea classHdr="OffertaCliente" classAD="DescrVettore3" typified="no"/>
+			</td></tr>
+
+			<!-- Scheda Contabilita (campi nascosti) -->
+			<tr><td>
+				<textinput classHdr="OffertaCliente" classAD="IdClienteFatturazione" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OffertaCliente" classAD="CondizioneFatturazione" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OffertaCliente" classAD="FatturazionePeriodica" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OffertaCliente" classAD="FatturazioneSospesa" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OffertaCliente" classAD="RaggruppamentoBolleFat" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OffertaCliente" classAD="AdbSpeseIncasso" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OffertaCliente" classAD="AdbSpeseBolloFatSenzaIVA" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OffertaCliente" classAD="IdCategoriaVenditaCliente" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OffertaCliente" classAD="CategoriaContabile" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OffertaCliente" classAD="GruppoContiAnalitica" typified="no"/>
+			</td></tr>
+
+			<!-- Scheda Commenti/Multimedia (campi nascosti) -->
+			<tr><td>
+				<textinput classHdr="OffertaCliente" classAD="Commenti.CommentHandlerId" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OffertaCliente" classAD="IdDocumentoMM" typified="no"/>
+			</td></tr>
+
+			<!-- Scheda Riepilogo (campi nascosti) -->
+			<tr><td>
+				<textinput classHdr="OffertaCliente" classAD="StampaListaControllo" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OffertaCliente" classAD="StampaConfermaOfferta" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OffertaCliente" classAD="EmailConferma" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OffertaCliente" classAD="FaxConferma" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OffertaCliente" classAD="NumRigheProvvisorie" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OffertaCliente" classAD="NumRigheDefinitive" typified="no"/>
+			</td></tr>
+					<tr><td>
+			<textinput classHdr="OffertaCliente" classAD="ValoreOfferto" typified="no"/>
+		</td></tr>
+		<tr><td>
+			<textinput classHdr="OffertaCliente" classAD="CostoOfferto" typified="no"/>
+		</td></tr>
+		<tr><td>
+			<textinput classHdr="OffertaCliente" classAD="ValoreServiziOff" typified="no"/>
+		</td></tr>
+		<tr><td>
+			<textinput classHdr="OffertaCliente" classAD="CostoServiziOff" typified="no"/>
+		</td></tr>
+		<tr><td>
+			<textinput classHdr="OffertaCliente" classAD="ValoreSpeseOff" typified="no"/>
+		</td></tr>
+		<tr><td>
+			<textinput classHdr="OffertaCliente" classAD="CostoSpeseOff" typified="no"/>
+		</td></tr>
+		<tr><td>
+			<textinput classHdr="OffertaCliente" classAD="ValoreOmaggiOff" typified="no"/>
+		</td></tr>
+		<tr><td>
+			<textinput classHdr="OffertaCliente" classAD="CostoOmaggiOff" typified="no"/>
+		</td></tr>
+		<tr><td>
+			<textinput classHdr="OffertaCliente" classAD="ValoreScontoFFOff" typified="no"/>
+		</td></tr>
+		<tr><td>
+			<textinput classHdr="OffertaCliente" classAD="ValoreImposta" typified="no"/>
+		</td></tr>
+		<tr><td>
+			<textinput classHdr="OffertaCliente" classAD="ValoreTotOfferto" typified="no"/>
+		</td></tr>
+
+		<tr><td>
+			<textinput classHdr="OffertaCliente" classAD="ValoreOffertoInValAz" typified="no"/>
+		</td></tr>
+		<tr><td>
+			<textinput classHdr="OffertaCliente" classAD="CostoOffertoInValAz" typified="no"/>
+		</td></tr>
+		<tr><td>
+			<textinput classHdr="OffertaCliente" classAD="ValoreServiziOffInValAz" typified="no"/>
+		</td></tr>
+		<tr><td>
+			<textinput classHdr="OffertaCliente" classAD="CostoServiziOffInValAz" typified="no"/>
+		</td></tr>
+		<tr><td>
+			<textinput classHdr="OffertaCliente" classAD="ValoreSpeseOffInValAz" typified="no"/>
+		</td></tr>
+		<tr><td>
+			<textinput classHdr="OffertaCliente" classAD="CostoSpeseOffInValAz" typified="no"/>
+		</td></tr>
+		<tr><td>
+			<textinput classHdr="OffertaCliente" classAD="ValoreOmaggiOffInValAz" typified="no"/>
+		</td></tr>
+		<tr><td>
+			<textinput classHdr="OffertaCliente" classAD="ValoreScontoFFOffVA" typified="no"/>
+		</td></tr>
+		<tr><td>
+			<textinput classHdr="OffertaCliente" classAD="CostoOmaggiOffInValAz" typified="no"/>
+		</td></tr>
+
+		<tr><td>
+			<textinput classHdr="OffertaCliente" classAD="ValoreImpostaInVaAz" typified="no"/>
+		</td></tr>
+		<tr><td>
+			<textinput classHdr="OffertaCliente" classAD="ValoreTotOffertoInValAz" typified="no"/>
+		</td></tr>
+
+		<tr><td>
+			<textinput classHdr="OffertaCliente" classAD="ValoreOrdinato" typified="no"/>
+		</td></tr>
+		<tr><td>
+			<textinput classHdr="OffertaCliente" classAD="CostoOrdinato" typified="no"/>
+		</td></tr>
+		<tr><td>
+			<textinput classHdr="OffertaCliente" classAD="ValoreServiziOrd" typified="no"/>
+		</td></tr>
+		<tr><td>
+			<textinput classHdr="OffertaCliente" classAD="CostoServiziOrd" typified="no"/>
+		</td></tr>
+		<tr><td>
+			<textinput classHdr="OffertaCliente" classAD="ValoreSpeseOrd" typified="no"/>
+		</td></tr>
+		<tr><td>
+			<textinput classHdr="OffertaCliente" classAD="CostoSpeseOrd" typified="no"/>
+		</td></tr>
+		<tr><td>
+			<textinput classHdr="OffertaCliente" classAD="ValoreOmaggiOrd" typified="no"/>
+		</td></tr>
+		<tr><td>
+			<textinput classHdr="OffertaCliente" classAD="CostoOmaggiOrd" typified="no"/>
+		</td></tr>
+		<tr><td>
+			<textinput classHdr="OffertaCliente" classAD="ValoreScontoFFOrd" typified="no"/>
+		</td></tr>
+
+		<tr><td>
+			<textinput classHdr="OffertaCliente" classAD="ValoreImpostaOrd" typified="no"/>
+		</td></tr>
+		<tr><td>
+			<textinput classHdr="OffertaCliente" classAD="ValoreTotOrd" typified="no"/>
+		</td></tr>
+
+			<tr><td>
+			<textinput classHdr="OffertaCliente" classAD="ValoreOrdinatoInVaAz" typified="no"/>
+		</td></tr>
+		<tr><td>
+			<textinput classHdr="OffertaCliente" classAD="CostoOrdinatoInVaAz" typified="no"/>
+		</td></tr>
+		<tr><td>
+			<textinput classHdr="OffertaCliente" classAD="ValoreServiziOrdInVaAz" typified="no"/>
+		</td></tr>
+		<tr><td>
+			<textinput classHdr="OffertaCliente" classAD="CostoServiziOrdInVaAz" typified="no"/>
+		</td></tr>
+		<tr><td>
+			<textinput classHdr="OffertaCliente" classAD="ValoreSpeseOrdInValAz" typified="no"/>
+		</td></tr>
+		<tr><td>
+			<textinput classHdr="OffertaCliente" classAD="CostoSpeseOrdInValAz" typified="no"/>
+		</td></tr>
+		<tr><td>
+			<textinput classHdr="OffertaCliente" classAD="ValoreOmaggiOrdInValAz" typified="no"/>
+		</td></tr>
+		<tr><td>
+			<textinput classHdr="OffertaCliente" classAD="CostoOmaggiOrdInValAz" typified="no"/>
+		</td></tr>
+		<tr><td>
+			<textinput classHdr="OffertaCliente" classAD="ValoreScontoFFOrdVA" typified="no"/>
+		</td></tr>
+		<tr><td>
+			<textinput classHdr="OffertaCliente" classAD="ValoreImpostaOrdInValAz" typified="no"/>
+		</td></tr>
+		<tr><td>
+			<textinput classHdr="OffertaCliente" classAD="ValoreTotOrdinatoInValAz" typified="no"/>
+		</td></tr>
+
+		</table>
+	</formcustomization>
+
+
+
+
+
+	<formcustomization customizePosition="START_TABBED" customizeName="B" tabbedName="tabbedTestataRidotta">
+		<!-- Scheda Destinazione -->
+		<tab
+			name="tabDestinazione"
+			resourceFile="it.thera.thip.vendite.offerteCliente.resources.OffertaCliente"
+			resourceID="Tab_Destinazione"
+			tabbedName="tabbedTestataRidotta"
+			onClick="gestioneTipoIndirizzo(false)"
+		>
+			<!-- Fix 39280 - inizio modifiche grafiche -->
+			<!-- <table cellspacing="1" cellpadding="1"> -->
+			<table cellspacing="2" cellpadding="2" style="padding: 3px; width: 100%;">
+				<tr>
+					<td nowrap="true" style="width: 150px">
+						<label name="thTipoIndirizzo" resourceID="LabelComboTipoIndirizzo" resourceFile="it.thera.thip.vendite.offerteCliente.resources.OffertaCliente"></label>
+					</td>
+					<td>
+
+                       <combobox classHdr="OffertaCliente" classAD="TipoDestinatario" id="thTipoIndirizzoCombo" name="thTipoIndirizzoCombo" onChange="gestioneTipoIndirizzo(true)"/>
+
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label classHdr="OffertaCliente" classRD="Indirizzo"></label>
+					</td>
+					<td nowrap="true" colspan="3">
+						<multisearchform
+							classHdr="OffertaCliente"
+							classRD="Indirizzo"
+							onSearchBack="indirizzoAnagraficoOnSearchBack()"
+							onKeyFocus="leggoIlContenuto('IndirizzoDestinatario')"
+							onKeyBlur="chiaveCambiata('IndirizzoDestinatario')"
+						/>
+					</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td colspan="3">
+						<table style="width: 480px">
+							<tr>
+								<td nowrap="true" style="background-color:#ffffff; color:#999999; border: 1px #A5ACB2 solid; height: 17.2px;">
+									<label style="margin-left: 1px; white-space: pre;" id="DatiIndirizzoAnagrafico"></label>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label classHdr="OffertaCliente" classRD="ClienteDestinatario"></label>
+					</td>
+					<td nowrap="true" colspan="3">
+						<multisearchform
+							classHdr="OffertaCliente"
+							classRD="ClienteDestinatario"
+							onSearchBack="indirizzoDestinatarioOnSearchBack()"
+							onKeyFocus="leggoIlContenuto('IndirizzoClienteDestinatario')"
+							onKeyBlur="chiaveCambiata('IndirizzoClienteDestinatario')"
+						/>
+					</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td colspan="3">
+						<table style="width: 480px">
+							<tr>
+								<td nowrap="true" style="background-color:#ffffff; color:#999999; border: 1px #A5ACB2 solid; height: 17.2px;">
+									<label style="margin-left: 1px; white-space: pre;" id="DatiDestinatario"></label><!--  Fix 39280 - fine -->
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td nowrap="true">
+						<label classHdr="OffertaCliente" classAD="RagioneSocialeDest"></label>
+					</td>
+					<td>
+						<textinput classHdr="OffertaCliente" classAD="RagioneSocialeDest" size="45"/>
+					</td>
+				</tr>
+				<tr>
+					<td nowrap="true">
+						<label classHdr="OffertaCliente" classAD="IndirizzoDestinatario"></label>
+					</td>
+					<td>
+						<textinput classHdr="OffertaCliente" classAD="IndirizzoDestinatario" size="45"/>
+					</td>
+				</tr>
+				<tr>
+					<td nowrap="true">
+						<label classHdr="OffertaCliente" classAD="CAPDestinatario"></label>
+					</td>
+					<td nowrap="true">
+						<textinput classHdr="OffertaCliente" classAD="CAPDestinatario" size="9"/>
+					</td>
+				</tr>
+				<tr>
+					<td nowrap="true">
+						<label classHdr="OffertaCliente" classAD="LocalitaDestinatario"></label>
+					</td>
+					<td>
+						<textinput classHdr="OffertaCliente" classAD="LocalitaDestinatario" size="35"/>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label classHdr="OffertaCliente" classAD="IdNazioneDestinatario"></label>
+					</td>
+					<td nowrap="true">
+						<multisearchform classHdr="OffertaCliente" classRD="NazioneDestinatario"/>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label classHdr="OffertaCliente" classAD="IdProvinciaDestinatario"></label>
+					</td>
+					<td nowrap="true">
+						<multisearchform
+							classHdr="OffertaCliente"
+							classRD="ProvinciaDestinatario"
+							editbutton="no"
+						/>
+					</td>
+				</tr>
+				<!-- Fix 27872 Inizio -->
+				<tr>
+					<td nowrap="true">
+						<label classHdr="OrdineVendita" classAD="IdLineaCredito"></label>
+					</td>
+					<td nowrap="true">
+						<textinput classHdr="OrdineVendita" classAD="IdLineaCredito" size="5"/>
+					</td>
+				</tr>
+				<!-- Fix 27872 Fine -->
+				
+			</table>
+
+		</tab>
+<tab name="tabDatiRif"
+			 resourceFile="it.thera.thip.vendite.offerteCliente.resources.OffertaCliente"
+			 resourceID="Tab_DatiRif">
+			            <!-- Fix 39280 - inizio modifiche grafiche -->
+						<!-- <table cellspacing="1" cellpadding="1"> -->
+						<table cellspacing="2" cellpadding="2" style="padding: 3px; width: 100%;">
+                         <tr>
+                           <td nowrap="true" style="width: 150px"><label classHdr="OffertaCliente" classAD="RichiedenteCliente"></label></td>
+			   <td><textinput classHdr="OffertaCliente" classAD="RichiedenteCliente" name="RichiedenteCliente"/></td>
+			 </tr>
+                         <tr>
+                           <td nowrap="true"><label classHdr="OffertaCliente" classAD="Data1"></label></td>
+                           <td nowrap="true"><textinput classHdr="OffertaCliente" classAD="Data1" name="Data1" showCalendarBtn="yes"/></td>
+			 </tr>
+                         <tr>
+                           <td nowrap="true"><label classHdr="OffertaCliente" classAD="Data2"></label></td>
+                           <td nowrap="true"><textinput classHdr="OffertaCliente" classAD="Data2" name="Data2" showCalendarBtn="yes"/></td><!-- Fix 39280 - fine -->
+			 </tr>
+                         <tr>
+                           <td nowrap="true"><label classHdr="OffertaCliente" classAD="Stringa1"></label></td>
+			   <td><textinput classHdr="OffertaCliente" classAD="Stringa1" name="Stringa1"/></td>
+			 </tr>
+                         <tr>
+                           <td nowrap="true"><label classHdr="OffertaCliente" classAD="Stringa2"></label></td>
+			   <td><textinput classHdr="OffertaCliente" classAD="Stringa2" name="Stringa2"/></td>
+			 </tr>
+                         <tr>
+                           <td nowrap="true"><label classHdr="OffertaCliente" classAD="Importo1"></label></td>
+			   <td><textinput classHdr="OffertaCliente" classAD="Importo1" name="Importo1"/></td>
+			 </tr>
+                         <tr>
+                           <td nowrap="true"><label classHdr="OffertaCliente" classAD="Importo2"></label></td>
+			   <td><textinput  classHdr="OffertaCliente" classAD="Importo2" name="Importo2"/></td>
+			 </tr>
+                      	</table>
+	    </tab>
+
+		<!-- Scheda Cond. vendita (campi visibili)-->
+		<tab
+			name="tabCondVendita"
+			resourceFile="it.thera.thip.vendite.offerteCliente.resources.OffertaCliente"
+			resourceID="Tab_CondVendita"
+			tabbedName="tabbedTestataRidotta"
+			onClick="selezioneTabCondVendita()"
+		>
+			<!-- Fix 39280 - inizio modifiche grafiche -->
+			<!-- <table cellspacing="1" cellpadding="1"> -->
+			<table cellspacing="2" cellpadding="2" style="padding: 3px; width: 100%;">
+				<tr>
+					<td>
+						<fieldset>
+							<legend>
+								<label classHdr="OffertaCliente" resourceFile="it.thera.thip.vendite.offerteCliente.resources.OffertaCliente" resourceID="GroupBoxPrezziSconti"></label>
+							</legend>
+							<table>
+								<tr>
+									<td nowrap="true" style="width: 150px">
+										<label classHdr="OffertaCliente" classAD="IdListinoPrezzi"></label>
+									</td>
+									<td nowrap="true" colspan="5">
+										<multisearchform
+											classHdr="OffertaCliente"
+											classRD="ListinoPrezzi"
+											additionalRestrictConditions="Valuta,RValuta"
+										/>
+									</td>
+								</tr>
+								<tr>
+									<td nowrap="true">
+										<label classHdr="OffertaCliente" classAD="PrcScontoCliente"></label>
+									</td>
+									<td style="width: 105px">
+										<textinput classHdr="OffertaCliente" classAD="PrcScontoCliente" size="8"/>
+									</td>
+									<td nowrap="true" style="width: 120px">
+										<label classHdr="OffertaCliente" classAD="PrcScontoModalita"></label>
+									</td>
+									<td style="width: 100px">
+										<textinput classHdr="OffertaCliente" classAD="PrcScontoModalita" size="8"/>
+									</td>
+									<td nowrap="true" style="width: 130px">
+										<label classHdr="OffertaCliente" classAD="PrcScontoFineFattura"></label>
+									</td>
+									<td>
+										<textinput classHdr="OffertaCliente" classAD="PrcScontoFineFattura" size="8"/>
+									</td>
+								</tr>
+								<tr>
+									<td nowrap="true">
+										<label classHdr="OffertaCliente" classAD="IdScontoTabellare"></label>
+									</td>
+									<td nowrap="true" colspan="5">
+										<multisearchform classHdr="OffertaCliente" classRD="ScontoTabellare"/>
+									</td>
+								</tr>
+								<tr>
+									<td nowrap="true">
+										<label classHdr="OffertaCliente" classAD="RifDataPerPrezzoSconti"></label>
+									</td>
+									<td colspan="2">
+										<combobox classHdr="OffertaCliente" classAD="RifDataPerPrezzoSconti"/>
+									</td>
+									<td nowrap="true" colspan="3"><!-- Fix 39280 - fine -->
+										<checkbox classHdr="OffertaCliente" classAD="RicalcoloPrzScontiFattura"/>
+									</td>
+								</tr>
+							</table>
+						</fieldset>
+					</td>
+				</tr>
+			</table>
+		</tab>
+	</formcustomization>
+	<!-- fix 70454 aggiungo 3 colonne alla ajax grid -->
+	<formcustomization customizePosition="ajaxgrid_EXT" classHdr="OffertaCliente"
+			 classCD="Righe" elementREPLACE="No">
+		<column classAD="CostoUltimoAcq" width="50"/>		
+	</formcustomization>
+	<!-- fix 70454 fine... aggiungo 3 colonne alla ajax grid -->
+</customization>
+

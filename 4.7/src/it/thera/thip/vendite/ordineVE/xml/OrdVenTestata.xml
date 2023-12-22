@@ -1,0 +1,750 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- Fix 3000: portato il campo Note in TFML/HTML -->
+
+<customization>
+	<!-- Scheda Generale -->
+	<formcustomization customizePosition="END_TAB" customizeName="A" tabbedName="tabbedTestataRidotta" tabName="tabGenerale">
+		<table cellspacing="0" cellpadding="0" style="display:none">
+			<!-- Campi Nascosti -->
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="IdAzienda" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="AnnoOrdine" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="NumeroOrdine" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<!-- Fix 10183 FR : messo typified="yes"-->
+				<textinput classHdr="OrdineVendita" classAD="IdAnagrafico" typified="yes"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="ClienteIndirizzo" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="ClienteLocalita" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="ClienteCAP" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="ClienteNazione" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="ClienteProvincia" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="Zona" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="MicroareaClienti" typified="no"/>
+			</td></tr>
+
+			<!-- Scheda Generale (campi nascosti) -->
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="ClienteCodFisc" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="ClientePartitaIVA" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="Divisione" typified="no"/>
+			</td></tr>
+			<!-- Inizio fix 8675 -->
+			<!--
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="NumeroOrdineIntestatario" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="DataOrdineIntestatario" typified="no"/>
+			</td></tr>
+			-->
+			<!-- Fine fix 8675 -->
+
+			<!-- Scheda Destinazione (campi nascosti) -->
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="ResponsabileVendite" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="Agente" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="ProvvigioneAgente" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="Subagente" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="ProvvigioneSubagente" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="TipoLiquidazionePrv" typified="no"/>
+			</td></tr>
+
+			<!-- Scheda Cond. Vendita 2 (campi nascosti) -->
+		    <tr><td>
+		    	<textinput classHdr="OrdineVendita" classAD="Valuta" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="Cambio" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="AssoggettamentoIVA" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="Spesa1" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="Spesa2" typified="no"/>
+			</td></tr>
+		    <tr><td>
+				<textinput classHdr="OrdineVendita" classAD="ModalitaPagamento" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="DataInizioPagamento" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="Lingua" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="IdentificativoBanca.CodificaSIA" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="IdentificativoBanca.IdABI" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="IdentificativoBanca.IdAzienda" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="IdentificativoBanca.IdBancaNonABI" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="IdentificativoBanca.IdCAB" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="ContoCorrente" typified="no"/>
+			</td></tr>
+			<!-- Fix 28455 inizio-->
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="CodiceIBAN" typified="no"/>
+			</td></tr>
+			<!-- Fix 28455 Fine-->
+			<!-- Scheda Cond. Evasione (campi nascosti) -->
+		   	<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="DataConsegnaRichiesta" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="SettConsegnaRichiesta" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="DataConsegnaConfermata" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="SettConsegnaConfermata" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="DataConsegnaProduzione" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="SettConsegnaProduzione" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="Magazzino" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="MagazzinoTrasferimento" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="Commessa" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="CentroCosto" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="Fornitore" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="TipoEvasioneOrdine" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="PrcPerditaResiduo" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="Priorita" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="GrigliaPeriodiOrdCnt" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="RaggruppamentoOrdBolla" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="MotivoBloccoEvasioneOrd" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="MotivoBloccoPianif" typified="no"/>
+			</td></tr>
+			<!-- Fix 33428 inizio -->
+			<tr>
+				<td>
+					<textinput classHdr="OrdineVendita" classAD="IdAnnoRichServ" typified="no"/>
+				</td>
+				<td>
+					<textinput classHdr="OrdineVendita" classAD="IdNumeroRichServ" typified="no"/>
+				</td>
+				<td>
+					<textinput classHdr="OrdineVendita" classAD="IdBene" typified="no"/>
+				</td>
+				<td>
+					<textinput classHdr="OrdineVendita" classAD="RichServRichiedente" typified="no"/>
+				</td>
+			</tr>
+			<!-- Fix 33428 fine -->
+
+			<!-- Scheda Spedizione (campi nascosti) -->
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="CadenzaConsegna" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="GiroConsegna" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="ModalitaSpedizione" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="DescrModalitaSpedizione" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="ModalitaConsegna" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="DescrModalitaConsegna" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="AspettoEsteriore" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="DescrAspettoEsteriore" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="CausaleTrasporto" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="DescrCausaleTrasporto" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="Vettore1" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textarea classHdr="OrdineVendita" classAD="DescrVettore1" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="Vettore2" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textarea classHdr="OrdineVendita" classAD="DescrVettore2" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="Vettore3" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textarea classHdr="OrdineVendita" classAD="DescrVettore3" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="PesoNetto" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="PesoLordo" typified="no"/>
+			</td></tr>
+    <!-- Fix 12508 - inizio   -->
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="Volume" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="RicalcolaPesiEVolume" typified="no"/>
+			</td></tr>
+    <!-- Fix 12508 - fine -->
+    <!-- Fix 12808 - inizio   -->
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="RicalcolaTrasporti" typified="no"/>
+			</td></tr>
+    <!-- Fix 12808 - fine   -->
+
+			<!-- Scheda Contabilita (campi nascosti) -->
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="ClienteFatturazione" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="CondizioneFatturazione" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="FatturazionePeriodica" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="FatturazioneSospesa" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="RaggruppamentoBolleFat" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="AdbSpeseIncasso" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="AdbSpeseBolloFatSenzaIVA" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="CategoriaVenditaCliente" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="CategoriaContabile" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="GruppoContiAnalitica" typified="no"/>
+			</td></tr>
+
+			<!-- Scheda Commenti/Multimedia (campi nascosti) -->
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="Commenti.CommentHandlerId" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="DocumentoMM" typified="no"/>
+			</td></tr>
+
+			<!-- Scheda Riepilogo (campi nascosti) -->
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="StampaListaControllo" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="StampaConfermaOrdine" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="EmailConferma" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="FaxConferma" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="NumRigheProvvisorie" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="NumRigheDefinitive" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="ValoreOrdinatoVO" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="CostoOrdinatoVO" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="ValoreServiziOrdVO" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="CostoServiziOrdVO" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="ValoreSpeseOrdVO" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="CostoSpeseOrdVO" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="ValoreOmaggiOrdVO" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="CostoOmaggiOrdVO" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="ValoreImposta" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="ValoreTotOrdinato" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="ValoreOrdinatoVA" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="CostoOrdinatoVA" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="ValoreServiziOrdVA" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="CostoServiziOrdVA" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="ValoreSpeseOrdVA" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="CostoSpeseOrdVA" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="ValoreOmaggiOrdVA" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="CostoOmaggiOrdVA" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="ValoreImpostaInValAz" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="ValoreTotOrdinatoInValAz" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="ValoreInSpedizioneVO" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="CostoInSpedizioneVO" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="ValoreServiziInSpedVO" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="CostoServiziInSpedVO" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="ValoreSpeseInSpedVO" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="CostoSpeseInSpedVO" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="ValoreOmaggiInSpedVO" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="CostoOmaggiInSpedVO" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="ValoreImpostaInSped" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="ValoreTotInSped" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="ValoreInSpedizioneVA" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="CostoInSpedizioneVA" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="ValoreServiziInSpedVA" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="CostoServiziInSpedVA" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="ValoreSpeseInSpedVA" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="CostoSpeseInSpedVA" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="ValoreOmaggiInSpedVA" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="CostoOmaggiInSpedVA" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="ValoreImpostaInSpedVA" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="ValoreTotInSpedVA" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="ValoreConsegnatoVO" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="CostoConsegnatoVO" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="ValoreServiziConsVO" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="CostoServiziConsVO" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="ValoreSpeseConsVO" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="CostoSpeseConsVO" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="ValoreOmaggiConsVO" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="CostoOmaggiConsVO" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="ValoreImpostaCons" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="ValoreTotCons" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="ValoreConsegnatoVA" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="CostoConsegnatoVA" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="ValoreServiziConsVA" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="CostoServiziConsVA" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="ValoreSpeseConsVA" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="CostoSpeseConsVA" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="ValoreOmaggiConsVA" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="CostoOmaggiConsVA" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="ValoreImpostaConsVA" typified="no"/>
+			</td></tr>
+			<tr><td>
+				<textinput classHdr="OrdineVendita" classAD="ValoreTotConsVA" typified="no"/>
+			</td></tr>
+		</table>
+	</formcustomization>
+
+
+	<formcustomization customizePosition="START_TABBED" customizeName="B" tabbedName="tabbedTestataRidotta">
+		<!-- Scheda Destinazione -->
+		<tab
+			name="tabDestinazione"
+			resourceFile="it.thera.thip.vendite.ordineVE.resources.OrdineVendita"
+			resourceID="Tab_Destinazione"
+			tabbedName="tabbedTestataRidotta"
+			onClick="gestioneTipoIndirizzo(false)"
+		>
+			<!-- <table cellspacing="1" cellpadding="1"> -->
+			<table cellspacing="2" cellpadding="2" style="width: 100%; padding: 3px"><!-- Fix 39280 -->
+				<tr>
+					<td style="width: 150px" nowrap="true"><!-- Fix 39280 - aggiunto width -->
+						<label name="thTipoIndirizzo" resourceID="LabelComboTipoIndirizzo" resourceFile="it.thera.thip.vendite.ordineVE.resources.OrdineVendita"></label>
+					</td>
+					<td>
+                       <!--Fix 08723-->
+					   <!--select name="thTipoIndirizzoCombo" onChange="gestioneTipoIndirizzo(true)"></select-->
+                       <combobox classHdr="OrdineVendita" classAD="TipoDestinatario" id="thTipoIndirizzoCombo" name="thTipoIndirizzoCombo" onChange="gestioneTipoIndirizzo(true)"/>
+					   <!--End Fix 08723-->
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label classHdr="OrdineVendita" classRD="Indirizzo"></label>
+					</td>
+					<td nowrap="true" colspan="3">
+						<multisearchform
+							classHdr="OrdineVendita"
+							classRD="Indirizzo"
+							onSearchBack="indirizzoAnagraficoOnSearchBack()"
+							onKeyFocus="leggoIlContenuto('IndirizzoDestinatario')"
+							onKeyBlur="chiaveCambiata('IndirizzoDestinatario')"
+						/>
+					</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td colspan="3">
+						<!-- <table border="1" width="100%"> -->
+						<table width="450px"><!-- Fix 39280 -->
+							<tr>
+								<!-- Fix 39280 -->
+								<!-- <td nowrap="true" style="background-color:#ffffff; color:#999999"><label id="DatiIndirizzoAnagrafico"></label></td> -->
+								<td nowrap="true" style="background-color:#ffffff; color:#999999; border: 1px #A5ACB2 solid; height: 17.2px;">
+									<label style="margin-left: 1px; white-space: pre;" id="DatiIndirizzoAnagrafico"></label>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label classHdr="OrdineVendita" classRD="ClienteDestinatario"></label>
+					</td>
+					<td nowrap="true" colspan="3">
+						<multisearchform
+							classHdr="OrdineVendita"
+							classRD="ClienteDestinatario"
+							onSearchBack="indirizzoDestinatarioOnSearchBack()"
+							onKeyFocus="leggoIlContenuto('IndirizzoClienteDestinatario')"
+							onKeyBlur="chiaveCambiata('IndirizzoClienteDestinatario')"
+						/>
+					</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td colspan="3">
+						<!-- <table border="1" width="100%"> -->
+						<table width="450px"><!-- Fix 39280 -->
+							<tr>
+								<!-- Fix 39280 -->
+								<!-- <td nowrap="true" style="background-color:#ffffff; color:#999999"><label id="DatiDestinatario"></label></td> -->
+								<td nowrap="true" style="background-color:#ffffff; color:#999999; border: 1px #A5ACB2 solid; height: 17.2px;">
+									<label style="margin-left: 1px; white-space: pre;" id="DatiDestinatario"></label>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td nowrap="true">
+						<label classHdr="OrdineVendita" classAD="RagioneSocialeDest"></label>
+					</td>
+					<td>
+						<textinput classHdr="OrdineVendita" classAD="RagioneSocialeDest" size="45"/>
+					</td>
+				</tr>
+				<tr>
+					<td nowrap="true">
+						<label classHdr="OrdineVendita" classAD="IndirizzoDestinatario"></label>
+					</td>
+					<td>
+						<textinput classHdr="OrdineVendita" classAD="IndirizzoDestinatario" size="45"/>
+					</td>
+				</tr>
+				<tr>
+					<td nowrap="true">
+						<label classHdr="OrdineVendita" classAD="CAPDestinatario"></label>
+					</td>
+					<td nowrap="true">
+						<textinput classHdr="OrdineVendita" classAD="CAPDestinatario" size="9"/>
+					</td>
+				</tr>
+				<tr>
+					<td nowrap="true">
+						<label classHdr="OrdineVendita" classAD="LocalitaDestinatario"></label>
+					</td>
+					<td>
+						<textinput classHdr="OrdineVendita" classAD="LocalitaDestinatario" size="35"/>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label classHdr="OrdineVendita" classAD="NazioneDestinatario"></label>
+					</td>
+					<td nowrap="true">
+						<multisearchform classHdr="OrdineVendita" classRD="NazioneDestinatario"/>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label classHdr="OrdineVendita" classAD="ProvinciaDestinatario"></label>
+					</td>
+					<td nowrap="true">
+						<multisearchform
+							classHdr="OrdineVendita"
+							classRD="ProvinciaDestinatario"
+							editbutton="no"
+						/>
+					</td>
+				</tr>
+				<!-- Fix 27872 Inizio -->
+				<tr>
+					<td nowrap="true">
+						<label classHdr="OrdineVendita" classAD="IdLineaCredito"></label>
+					</td>
+					<td nowrap="true">
+						<textinput classHdr="OrdineVendita" classAD="IdLineaCredito" size="5"/>
+					</td>
+				</tr>
+				<!-- Fix 27872 Fine -->
+			</table>
+
+		</tab>
+
+
+		<!-- Scheda Cond. vendita (campi visibili)-->
+		<tab
+			name="tabCondVendita"
+			resourceFile="it.thera.thip.vendite.ordineVE.resources.OrdineVendita"
+			resourceID="Tab_CondVend"
+			tabbedName="tabbedTestataRidotta"
+			onClick="selezioneTabCondVendita()"
+		>
+			<!-- <table cellspacing="1" cellpadding="1"> -->
+			<table cellspacing="2" cellpadding="2" style="width: 100%; padding: 3px"><!-- Fix 39280 -->
+				<tr>
+					<td>
+						<fieldset>
+							<legend>
+								<label classHdr="OrdineVendita" resourceFile="it.thera.thip.vendite.ordineVE.resources.OrdineVendita" resourceID="GroupBoxPrezziSconti"></label>
+							</legend>
+							<table>
+								<tr>
+									<td style="width: 150px" nowrap="true"><!-- Fix 39280 -->
+										<label classHdr="OrdineVendita" classAD="ListinoPrezzi"></label>
+									</td>
+									<td nowrap="true" colspan="5"><!-- Fix 39280 - colspan="5" -->
+										<multisearchform
+											classHdr="OrdineVendita"
+											classRD="ListinoPrezzi"
+											additionalRestrictConditions="Valuta,RValuta"
+										/>
+									</td>
+								</tr>
+								<tr>
+									<td nowrap="true">
+										<label classHdr="OrdineVendita" classAD="PrcScontoIntestatario"></label>
+									</td>
+									<td style="width: 100px"><!-- Fix 39280 -->
+										<textinput classHdr="OrdineVendita" classAD="PrcScontoIntestatario" size="8"/>
+									</td>
+									<td style="width: 120px" nowrap="true"><!-- Fix 39280 -->
+										<label classHdr="OrdineVendita" classAD="PrcScontoModalita"></label>
+									</td>
+									<td style="width: 100px"><!-- Fix 39280 -->
+										<textinput classHdr="OrdineVendita" classAD="PrcScontoModalita" size="8"/>
+									</td>
+									<td style="width: 180px" nowrap="true"><!-- Fix 39280 -->
+										<label classHdr="OrdineVendita" classAD="PrcScontoFineFattura"></label>
+									</td>
+									<td style="width: 100px"><!-- Fix 39280 -->
+										<textinput classHdr="OrdineVendita" classAD="PrcScontoFineFattura" size="8"/>
+									</td>
+								</tr>
+								<tr>
+									<td nowrap="true">
+										<label classHdr="OrdineVendita" classAD="ScontoTabellare"></label>
+									</td>
+									<td nowrap="true" colspan="5"><!-- Fix 39280 - colspan="5" -->
+										<multisearchform classHdr="OrdineVendita" classRD="ScontoTabellare"/>
+									</td>
+								</tr>
+								<tr>
+									<td nowrap="true">
+										<label classHdr="OrdineVendita" classAD="RifDataPerPrezzoSconti"></label>
+									</td>
+									<!-- Fix 39280 -->
+									<!-- <td colspan="4"> -->
+									<td colspan="2">
+										<combobox classHdr="OrdineVendita" classAD="RifDataPerPrezzoSconti"/>
+									</td>
+									<!-- Fix 39280 - aggiunto colspan="3" -->
+									<td nowrap="true" colspan="3">
+										<checkbox classHdr="OrdineVendita" classAD="RicalcoloPrzScontiFattura"/>
+									</td>
+								</tr>
+							</table>
+						</fieldset>
+					</td>
+				</tr>
+			</table>
+		</tab>
+	</formcustomization>
+	<!-- fix 70454 aggiungo la colonna del COSTO_ULTIMO alla ajax grid -->
+	<formcustomization customizePosition="ajaxgrid_EXT" classHdr="OrdineVendita"
+			 classCD="Righe" elementREPLACE="No">
+		<column classAD="CostoUltimoAcq" width="50"/>		
+	</formcustomization>
+	<!-- fix 70454 fine... -->
+</customization>
+
