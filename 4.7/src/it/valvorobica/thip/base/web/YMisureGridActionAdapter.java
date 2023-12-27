@@ -10,6 +10,14 @@ import com.thera.thermfw.web.WebToolBar;
 import com.thera.thermfw.web.WebToolBarButton;
 import com.thera.thermfw.web.servlet.GridActionAdapter;
 
+/**
+ * <h1>Softre Solutions</h1>
+ * <br>
+ * @author Daniele Signoroni 22/12/2023
+ * <br><br>
+ * <b>71366	DSSOF3	22/12/2023</b>    <p>Aggiungere bottone per importazione misure da csv</p>
+ */
+
 public class YMisureGridActionAdapter extends GridActionAdapter {
 
 	private static final long serialVersionUID = 1L;

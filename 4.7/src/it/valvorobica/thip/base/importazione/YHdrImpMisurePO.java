@@ -23,6 +23,14 @@ import it.thera.thip.base.azienda.Azienda;
 import it.thera.thip.base.fornitore.FornitoreAcquisto;
 import it.thera.thip.cs.EntitaAzienda;
 
+/**
+ * <h1>Softre Solutions</h1>
+ * <br>
+ * @author Daniele Signoroni 22/12/2023
+ * <br><br>
+ * <b>71366	DSSOF3	22/12/2023</b>    <p>Descrittore di importazione</p>
+ */
+
 public abstract class YHdrImpMisurePO extends EntitaAzienda
 		implements BusinessObject, Authorizable, Deletable, Conflictable {
 

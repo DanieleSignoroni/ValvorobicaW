@@ -183,7 +183,7 @@
 <!--<span class="multisearchform" id="ClassAD"></span>-->
                     </td>
                   </tr>
-      <tr>
+      <tr style="display:none;">
         <td valign="top">
           <%{  WebLabelCompound label = new com.thera.thermfw.web.WebLabelCompound(null, null, "YClassAdImpMisure", "ValoreDefault", null); 
    label.setParent(YClassAdImpMisureForm); 

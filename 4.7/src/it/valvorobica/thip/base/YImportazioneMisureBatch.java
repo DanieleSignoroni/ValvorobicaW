@@ -19,6 +19,7 @@ import com.thera.thermfw.batch.BatchRunnable;
 import com.thera.thermfw.collector.BODataCollector;
 import com.thera.thermfw.collector.BaseBOComponentManager;
 import com.thera.thermfw.common.BaseComponentsCollection;
+import com.thera.thermfw.common.BusinessObject;
 import com.thera.thermfw.common.ErrorMessage;
 import com.thera.thermfw.gui.cnr.OpenType;
 import com.thera.thermfw.persist.CachedStatement;
@@ -31,8 +32,21 @@ import com.thera.thermfw.type.DecimalType;
 
 import it.thera.thip.base.azienda.Azienda;
 import it.thera.thip.base.fornitore.FornitoreAcquisto;
+import it.valvorobica.thip.base.importazione.YClassAdImpMisure;
 import it.valvorobica.thip.base.importazione.YClassAdImpMisureTM;
 import it.valvorobica.thip.base.importazione.YHdrImpMisure;
+
+/**
+ * <h1>Softre Solutions</h1>
+ * <br>
+ * @author Daniele Signoroni 22/12/2023
+ * <br><br>
+ * <b>71366	DSSOF3	22/12/2023</b>    <p>Importazione misure da .csv prima stesura.<br></br>
+ * 										 Tramite il descrittore di importazione {@link YHdrImpMisure} e i suoi
+ * 										 {@link YClassAdImpMisure} creo l'associazione: <br><b> Titolo colonna <--> {@link BaseBOComponentManager} </b>.<br>
+ * 										 Una volta creata l'associazione vado a valorizzare il {@link BusinessObject} tramite {@link BODataCollector}.
+ * 									  </p>
+ */
 
 public class YImportazioneMisureBatch extends BatchRunnable {
 
@@ -216,7 +230,7 @@ public class YImportazioneMisureBatch extends BatchRunnable {
 		if (line == null) {
 			return null;
 		}
-		String[] params = new String[150];
+		String[] params = new String[line.split(";").length]; //alla max lunghezza delle columns
 		params = line.split(";");
 		return params;
 	}
@@ -254,6 +268,7 @@ public class YImportazioneMisureBatch extends BatchRunnable {
 
 	@SuppressWarnings("unchecked")
 	protected boolean runImportazione() throws IllegalArgumentException {
+		output.println();
 		boolean isOk = true;
 		BufferedReader bufferedReader = null;
 		FileReader fileReader = null;
@@ -265,9 +280,22 @@ public class YImportazioneMisureBatch extends BatchRunnable {
 			Object[] headers = null;
 			int keyPosition = 0;
 			String titleKey = getTitoloColonnaColata(this.getIdFornitore());
+			if (titleKey == null) {
+				bufferedReader.close();
+				throw new IllegalArgumentException(
+						"Non e' stato definito nessun attributo chiave per la colonna ["+YMisureTM.R_COLATA+"] della tabella: "+YMisureTM.TABLE_NAME);
+			}
 			HashMap<Integer, String> associazioneColonneAttributo = new HashMap<Integer, String>();
 			while (line != null) {
+				BODataCollector boDC = null;
 				if (i == 0) { // headers
+					//sistemazione di qualche carattere particolare
+					if(line.contains("ï»¿")) {
+						line = line.replace("ï»¿", "");
+					}
+					if(line.contains("Â")) {
+						line = line.replace("Â", "");
+					}
 					headers = getLineParams(line);
 					for (int j = 0; j < headers.length; j++) {
 						String attributeName = null;
@@ -276,16 +304,15 @@ public class YImportazioneMisureBatch extends BatchRunnable {
 							attributeName = getAttributeForColumn(titleKey);
 							if (attributeName != null)
 								associazioneColonneAttributo.put(j, attributeName);
+							else
+								output.println("ATTENZIONE: Non e' stato trovato nessun attributo configurato per la colonna : " +titleKey);
 						} else {
 							attributeName = getAttributeForColumn(headers[j].toString().trim());
 							if (attributeName != null)
 								associazioneColonneAttributo.put(j, attributeName);
+							else
+								output.println("ATTENZIONE: Non e' stato trovato nessun attributo configurato per la colonna : " +headers[j].toString().trim());
 						}
-					}
-					if (titleKey == null) {
-						bufferedReader.close();
-						throw new IllegalArgumentException(
-								"Non e' stato definito nessun attributo chiave per la tabella ");
 					}
 				} else {
 					output.println(" ------ Processo RIGA CSV NR: " + i);
@@ -293,13 +320,13 @@ public class YImportazioneMisureBatch extends BatchRunnable {
 					Object[] values = getLineParams(line);
 					String c = KeyHelper.buildObjectKey(new String[] { Azienda.getAziendaCorrente(),
 							this.getIdFornitore(), values[keyPosition].toString() });
-					BODataCollector boDC = createDataCollector("YMisure");
+					boDC = createDataCollector("YMisure");
 					if (boDC.initSecurityServices(OpenType.NEW, false, false, true) == BODataCollector.ERROR) {
 						bufferedReader.close();
 						throw new Exception("Utente non autorizzato ad effettuare l'operazione NEW su YMisure");
 					}
-					boDC.set("IdAzienda", Azienda.getAziendaCorrente());
-					boDC.set("RFornitore", this.getIdFornitore());
+					boDC.set("IdAzienda", Azienda.getAziendaCorrente()); //[0] key
+					boDC.set("RFornitore", this.getIdFornitore()); //[1] key
 					boDC.retrieve(c); // Provo a fare retrieve
 					for (Map.Entry<Integer, String> entry : associazioneColonneAttributo.entrySet()) {
 						Integer key = entry.getKey();
@@ -318,8 +345,7 @@ public class YImportazioneMisureBatch extends BatchRunnable {
 						}
 						// setto i component manager
 					}
-					int ok = boDC.check(); // qui fa la check e carica pure i value del comp manager, tramite
-											// setBoOnRecursive
+					int ok = boDC.check(); //carica pure i value del comp manager, tramite setBoOnRecursive
 					if (ok == BODataCollector.OK) {
 						boDC.setAutoCommit(true);
 						int rc = boDC.save(true);
@@ -337,7 +363,7 @@ public class YImportazioneMisureBatch extends BatchRunnable {
 					}
 					output.println("Termine processo RIGA CSV NR: " + i + "  ---");
 				}
-				output.println("");
+				output.println();
 				i++;
 				line = bufferedReader.readLine();
 			}

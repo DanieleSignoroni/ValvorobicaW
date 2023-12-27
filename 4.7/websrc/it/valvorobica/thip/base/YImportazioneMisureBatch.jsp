@@ -31,7 +31,7 @@
   List errors = new ArrayList(); 
   WebJSTypeList jsList = new WebJSTypeList(); 
   WebForm YImportMisureForm =  
-     new com.thera.thermfw.web.WebFormForBatchForm(request, response, "YImportMisureForm", "YImportMisure", "Arial,10", "it.valvorobica.thip.base.web.YImportazioneMisureBatchFormActionAdapter", false, false, true, true, true, true, null, 0, true, "it/thera/thip/base/edi/RicezioneDocumentiEDI.js"); 
+     new com.thera.thermfw.web.WebFormForBatchForm(request, response, "YImportMisureForm", "YImportMisure", "Arial,10", "it.valvorobica.thip.base.web.YImportazioneMisureBatchFormActionAdapter", false, false, true, true, true, true, null, 0, true, "it/valvorobica/thip/base/YImportazioneMisureBatch.js"); 
   YImportMisureForm.setServletEnvironment(se); 
   YImportMisureForm.setJSTypeList(jsList); 
   YImportMisureForm.setHeader("it.thera.thip.cs.Header.jsp"); 
@@ -186,8 +186,8 @@
 <!--<span class="multisearchform" id="Fornitore"></span>--></td>
 								</tr>
 								<tr>
-									<td><label id="SceltaFile"></label></td>
-									<td><input id="NomeFile" name="NomeFile" size="90" type="file"></td>
+									<td><label id="SceltaFile">File CSV.</label></td>
+									<td><input id="NomeFile" name="NomeFile" size="90" style=" width: 300px;height: 100px;" type="file"></td>
 								</tr>
 							</table>
 						<% myTabbed.endTab(); %> 

@@ -7,7 +7,7 @@
 			header="it.thera.thip.cs.Header.jsp" footer="it.thera.thip.cs.Footer.jsp"
 			servlet="it.valvorobica.thip.base.web.YImportazioneMisureBatchFormActionAdapter"			
 			onLoadPresent="yes"
-			jsLibraryName="it/thera/thip/base/edi/RicezioneDocumentiEDI.js">
+			jsLibraryName="it/valvorobica/thip/base/YImportazioneMisureBatch.js">
 			>
 
 	<menubar name="myMenuBar" maxWidth="150" color="#000000" background="#A5B6CE"> 

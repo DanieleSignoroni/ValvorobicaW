@@ -3,8 +3,10 @@ var encodingDefault;
 var enctypeMultipart = "multipart/form-data";
 
 function YImportMisureOL() {
-	enctypeDefault = document.forms[0].enctype;//Fix 18758
-	encodingDefault = document.forms[0].encoding;//Fix 18758
+	window.resizeTo(700,500);
+	enctypeDefault = document.forms[0].enctype;
+	encodingDefault = document.forms[0].encoding;
+	document.getElementById('NomeFile').style.background = mCo; //mettiamolo giallo va'
 }
 
 function enableMultipart() {

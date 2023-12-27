@@ -18,6 +18,15 @@ import com.thera.thermfw.web.MultipartFile;
 import com.thera.thermfw.web.MultipartHandler;
 import com.thera.thermfw.web.ServletEnvironment;
 import com.thera.thermfw.web.WebElement;
+import com.thera.thermfw.web.WebToolBar;
+
+/**
+ * <h1>Softre Solutions</h1>
+ * <br>
+ * @author Daniele Signoroni 22/12/2023
+ * <br><br>
+ * <b>71366	DSSOF3	22/12/2023</b>    <p>Gestione file di importazione</p>
+ */
 
 public class YImportazioneMisureBatchFormActionAdapter extends BatchFormActionAdapter {
 
@@ -25,21 +34,30 @@ public class YImportazioneMisureBatchFormActionAdapter extends BatchFormActionAd
 
 	public static final String YVALVO_004 = "YVALVO_004";
 
+	@Override
+	public void modifyToolBar(WebToolBar toolBar) {
+		super.modifyToolBar(toolBar);
+		toolBar.removeButton("Tickler");
+		toolBar.removeButton("RunAndNewBatch");
+		toolBar.removeButton("CheckAll");
+	}
+
 	public void processAction(ServletEnvironment se) throws ServletException, IOException {
 		String action = se.getRequest().getParameter(ACTION);
-		if (action != null && !(action.equals(RUN_AND_NEW_BATCH_ACTION) || action.equals(RUN_BATCH_ACTION))) {
+		if (action != null && !(action.equals(RUN_BATCH_ACTION))) {
 			super.processAction(se);
-		}
-		String url;
-		MultipartHandler mh = new MultipartHandler(se);
-		mh.initialize();
-		action = mh.getMultipartRequest().getParameter(ACTION);
-		if (action.equals(RUN_AND_NEW_BATCH_ACTION) || action.equals(RUN_BATCH_ACTION)) {
-			ClassADCollection cadc = getClassADCollection(mh.getMultipartRequest().getParameter(CLASS_NAME));
-			setCurrentViewSelector(getViewSelector(cadc, se));
-			url = getCurrentViewSelector().getSaveBatchURL(se, false, true);
-			url = buildParameterRequest(mh, url);
-			saveBatch(se, mh, url);
+		}else {
+			String url;
+			MultipartHandler mh = new MultipartHandler(se);
+			mh.initialize();
+			action = mh.getMultipartRequest().getParameter(ACTION);
+			if (action.equals(RUN_AND_NEW_BATCH_ACTION) || action.equals(RUN_BATCH_ACTION)) {
+				ClassADCollection cadc = getClassADCollection(mh.getMultipartRequest().getParameter(CLASS_NAME));
+				setCurrentViewSelector(getViewSelector(cadc, se));
+				url = getCurrentViewSelector().getSaveBatchURL(se, false, true);
+				url = buildParameterRequest(mh, url);
+				saveBatch(se, mh, url);
+			}
 		}
 	}
 

@@ -8,6 +8,14 @@ import com.thera.thermfw.persist.TableManager;
 
 import it.thera.thip.cs.DatiComuniEstesiTTM;
 
+/**
+ * <h1>Softre Solutions</h1>
+ * <br>
+ * @author Daniele Signoroni 22/12/2023
+ * <br><br>
+ * <b>71366	DSSOF3	22/12/2023</b>    <p>Descrittore di attributo importazione</p>
+ */
+
 public class YClassAdImpMisureTM extends TableManager {
 
 	/**

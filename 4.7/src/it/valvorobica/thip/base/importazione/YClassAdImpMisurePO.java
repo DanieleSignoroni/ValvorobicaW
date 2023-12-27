@@ -1,19 +1,3 @@
-/*
- * @(#)YClassAdImpMisurePO.java
- */
-
-/**
- * null
- *
- * <br></br><b>Copyright (C) : Thera SpA</b>
- * @author Wizard 21/12/2023 at 11:59:01
- */
-/*
- * Revisions:
- * Date          Owner      Description
- * 21/12/2023    Wizard     Codice generato da Wizard
- *
- */
 package it.valvorobica.thip.base.importazione;
 
 import java.sql.SQLException;
@@ -36,6 +20,15 @@ import com.thera.thermfw.util.PersistentClassAd;
 
 import it.thera.thip.base.azienda.Azienda;
 import it.thera.thip.cs.EntitaAzienda;
+
+/**
+ * <h1>Softre Solutions</h1>
+ * <br>
+ * @author Daniele Signoroni 22/12/2023
+ * <br><br>
+ * <b>71366	DSSOF3	22/12/2023</b>    <p>Descrittore di attributo importazione</p>
+ */
+
 
 public abstract class YClassAdImpMisurePO extends EntitaAzienda
 		implements BusinessObject, Authorizable, Deletable, Child, Conflictable {
