@@ -68,7 +68,7 @@ public class YImgCatalogoPortaleFormActionAdapter extends FormActionAdapter {
 			if (objectKey != null && !objectKey.isEmpty()) {
 				try {
 					YImgCatalogoPortale immagine = YImgCatalogoPortale.elementWithKey(objectKey,
-							PersistentObject.OPTIMISTIC_LOCK);
+							PersistentObject.NO_LOCK);
 					if (immagine != null && immagine.retrieve()) {
 						locFileName = immagine.getTipoClassificazione() + "-" + immagine.getIdClassificazione()
 								+ getExtensionFromName(fileMH.getFileName());

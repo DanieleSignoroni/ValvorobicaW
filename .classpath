@@ -1,40 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <classpath>
-<classpathentry kind="lib"  path="conf/db/SQLServer" />
-
-<classpathentry kind="lib"  path="conf/commons" />
-
-<classpathentry kind="src"  path="4.7/src" />
-
-<classpathentry kind="lib"  path="WebContent/dtd" />
-
-<classpathentry kind="lib"  path="WebContent/WEB-INF/classes" />
-
-<classpathentry kind="lib"  path="4.7/lib" />
-
-<classpathentry kind="lib"  path="4.7/rpt" />
-
-<classpathentry kind="lib"  path="LibThipPers"  sourcepath="T:/ThipPers/Valvorobica/4.7/src" />
-
-<classpathentry kind="lib"  path="RptThipPers" />
-
-<classpathentry kind="con"  path="org.eclipse.jdt.USER_LIBRARY/DevPortalTools" />
-
-<classpathentry kind="lib"  path="LibFixWeb"  sourcepath="K:/ThipRil/FIXWEB/Valvorobica/src" />
-
-<classpathentry kind="lib"  path="RptFixWeb" />
-
-<classpathentry kind="con"  path="org.eclipse.jdt.USER_LIBRARY/Tomcat9.0_8086" />
-
-<classpathentry combineaccessrules="false"  kind="src"  path="/PTH_4.7.0" />
-
-<classpathentry kind="con"  path="org.eclipse.jdt.USER_LIBRARY/SQLServer" />
-
-<classpathentry kind="con"  path="org.eclipse.jdt.launching.JRE_CONTAINER" />
-
-<classpathentry kind="con"  path="org.eclipse.jdt.USER_LIBRARY/Thip extra jars" />
-
-<classpathentry kind="output"  path="lib" />
+	<classpathentry kind="lib" path="conf/db/SQLServer"/>
+	<classpathentry kind="lib" path="conf/commons"/>
+	<classpathentry kind="src" path="4.7/src"/>
+	<classpathentry kind="lib" path="WebContent/dtd"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/classes"/>
+	<classpathentry kind="lib" path="4.7/lib"/>
+	<classpathentry kind="lib" path="4.7/rpt"/>
+	<classpathentry kind="lib" path="LibThipPers" sourcepath="T:/ThipPers/Valvorobica/4.7/src"/>
+	<classpathentry kind="lib" path="RptThipPers"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/DevPortalTools"/>
+	<classpathentry kind="lib" path="LibFixWeb" sourcepath="K:/ThipRil/FIXWEB/Valvorobica/src"/>
+	<classpathentry kind="lib" path="RptFixWeb"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Tomcat9.0_8086"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/SQLServer"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Thip extra jars"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/PTH_5.0.0"/>
+	<classpathentry kind="output" path="lib"/>
 </classpath>
-

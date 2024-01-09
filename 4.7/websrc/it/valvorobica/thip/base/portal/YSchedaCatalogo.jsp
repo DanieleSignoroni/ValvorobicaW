@@ -133,6 +133,16 @@ Integer items = 0;
 	/* padding: 0.5rem 0.2rem; */
 }
 
+.card{
+	height: 300px;
+}
+
+.img-fluid {
+    width: auto;
+    max-height: 100%;
+    margin-top:1rem;
+}
+
 </style>
 </head>
 <body class="noscrollbar"
